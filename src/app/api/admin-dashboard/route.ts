@@ -132,14 +132,14 @@ export async function GET(_request: NextRequest) {
         email: (booking.customers as any).email,
         phone: (booking.customers as any).phone
       } : null,
-      show: booking.performances?.shows ? {
-        id: booking.performances.shows.id,
-        title: booking.performances.shows.title
+      show: (booking.performances as any)?.shows ? {
+        id: (booking.performances as any).shows.id,
+        title: (booking.performances as any).shows.title
       } : null,
       performance: booking.performances ? {
-        id: booking.performances.id,
-        dateTime: booking.performances.dateTime,
-        isMatinee: booking.performances.isMatinee
+        id: (booking.performances as any).id,
+        dateTime: (booking.performances as any).dateTime,
+        isMatinee: (booking.performances as any).isMatinee
       } : null
     })) || []
 

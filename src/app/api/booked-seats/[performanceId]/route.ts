@@ -39,10 +39,10 @@ export async function GET(
     // Extract seat information
     const bookedSeatData = bookedSeats?.map(item => ({
       seatId: item.seatId,
-      seatDisplay: `${item.seats.row}${item.seats.number}`,
-      row: item.seats.row,
-      number: item.seats.number,
-      section: item.seats.section
+      seatDisplay: `${(item.seats as any).row}${(item.seats as any).number}`,
+      row: (item.seats as any).row,
+      number: (item.seats as any).number,
+      section: (item.seats as any).section
     })) || []
 
     // Also return just the seat IDs for easy checking
