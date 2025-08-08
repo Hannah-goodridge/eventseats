@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Widget Examples</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .example {
+            margin: 40px 0;
+            padding: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #007cba;
+            padding-bottom: 10px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .widget-demo {
+            margin: 20px 0;
+            min-height: 600px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+        }
+        .note {
+            background: #e7f3ff;
+            border-left: 4px solid #007cba;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        #booking-status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        #booking-status.show {
+            display: block;
+        }
+        #booking-status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Show Bookings System - Embed Examples</h1>
+        <p>This page demonstrates different ways to embed the booking system into your website.</p>
+
+        <div class="note">
+            <strong>Note:</strong> Replace <code>your-booking-system.com</code> with your actual booking system domain,
+            and update the <code>showId</code> and <code>performanceId</code> with real values from your system.
+        </div>
+
+        <!-- Example 1: Basic JavaScript Widget -->
+        <div class="example">
+            <h3>1. Basic JavaScript Widget</h3>
+            <p>The simplest way to embed a booking widget with responsive design.</p>
+
+            <div class="code">
+&lt;div id="booking-widget-1"&gt;&lt;/div&gt;
+&lt;script src="https://your-booking-system.com/booking-widget.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    createBookingWidget({
+        containerId: 'booking-widget-1',
+        showId: 'abc123',
+        performanceId: 'def456',
+        responsive: true
+    });
+&lt;/script&gt;
+            </div>
+
+            <div class="widget-demo" id="booking-widget-1">
+                <p>Booking widget would appear here<br>
+                <small>(Replace with real showId and performanceId to see actual widget)</small></p>
+            </div>
+        </div>
+
+        <!-- Example 2: Widget with Event Handling -->
+        <div class="example">
+            <h3>2. Widget with Booking Completion Handling</h3>
+            <p>Handles booking completion events to show custom messages or perform actions.</p>
+
+            <div class="code">
+&lt;div id="booking-widget-2"&gt;&lt;/div&gt;
+&lt;div id="booking-status"&gt;&lt;/div&gt;
+
+&lt;script src="https://your-booking-system.com/booking-widget.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    createBookingWidget({
+        containerId: 'booking-widget-2',
+        showId: 'abc123',
+        performanceId: 'def456',
+        responsive: true,
+        onBookingComplete: function(data) {
+            // Show success message
+            var status = document.getElementById('booking-status');
+            status.className = 'show success';
+            status.innerHTML = '✅ Booking confirmed! Reference: ' + data.bookingNumber;
+
+            // Optional: Track with analytics
+            console.log('Booking completed:', data);
+        }
+    });
+&lt;/script&gt;
+            </div>
+
+            <div class="widget-demo" id="booking-widget-2">
+                <p>Interactive booking widget would appear here<br>
+                <small>Completion events would show in the status area below</small></p>
+            </div>
+            <div id="booking-status"></div>
+        </div>
+
+        <!-- Example 3: Auto-initialization -->
+        <div class="example">
+            <h3>3. Auto-initialization with Data Attributes</h3>
+            <p>Automatically initializes widgets using data attributes - no JavaScript required!</p>
+
+            <div class="code">
+&lt;div data-booking-widget
+     data-show-id="abc123"
+     data-performance-id="def456"
+     data-responsive="true"&gt;
+&lt;/div&gt;
+&lt;script src="https://your-booking-system.com/booking-widget.js"&gt;&lt;/script&gt;
+            </div>
+
+            <div class="widget-demo"
+                 data-booking-widget
+                 data-show-id="abc123"
+                 data-performance-id="def456"
+                 data-responsive="true">
+                <p>Auto-initialized booking widget would appear here</p>
+            </div>
+        </div>
+
+        <!-- Example 4: Fixed Size Widget -->
+        <div class="example">
+            <h3>4. Fixed Size Widget</h3>
+            <p>Widget with specific dimensions, useful for sidebar placement.</p>
+
+            <div class="code">
+&lt;div id="booking-widget-4"&gt;&lt;/div&gt;
+&lt;script src="https://your-booking-system.com/booking-widget.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    createBookingWidget({
+        containerId: 'booking-widget-4',
+        showId: 'abc123',
+        performanceId: 'def456',
+        width: 400,
+        height: 500,
+        responsive: false
+    });
+&lt;/script&gt;
+            </div>
+
+            <div style="width: 400px; margin: 0 auto;">
+                <div class="widget-demo" id="booking-widget-4" style="height: 500px;">
+                    <p>Fixed 400x500 booking widget would appear here</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 5: Direct Iframe -->
+        <div class="example">
+            <h3>5. Direct Iframe Embedding</h3>
+            <p>Simple iframe without JavaScript - works everywhere.</p>
+
+            <div class="code">
+&lt;iframe src="https://your-booking-system.com/embed/abc123/def456"
+        width="800"
+        height="600"
+        frameborder="0"
+        style="border: 1px solid #e2e8f0; border-radius: 8px; max-width: 100%;"&gt;
+&lt;/iframe&gt;
+            </div>
+
+            <div class="widget-demo" style="height: 600px;">
+                <p>Direct iframe booking widget would appear here<br>
+                <small>URL: /embed/abc123/def456</small></p>
+            </div>
+        </div>
+
+        <!-- Example 6: Responsive Iframe -->
+        <div class="example">
+            <h3>6. Responsive Iframe</h3>
+            <p>Responsive iframe that scales with screen size.</p>
+
+            <div class="code">
+&lt;div style="position: relative; width: 100%; height: 0; padding-bottom: 75%; overflow: hidden; border-radius: 8px; border: 1px solid #e2e8f0;"&gt;
+    &lt;iframe src="https://your-booking-system.com/embed/abc123/def456"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"&gt;
+    &lt;/iframe&gt;
+&lt;/div&gt;
+            </div>
+
+            <div style="position: relative; width: 100%; height: 0; padding-bottom: 60%; overflow: hidden; border-radius: 8px; border: 1px solid #e2e8f0; background: #f9fafb;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
+                    <p>Responsive iframe booking widget would appear here<br>
+                    <small>Maintains aspect ratio across all screen sizes</small></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 7: WordPress Integration -->
+        <div class="example">
+            <h3>7. WordPress Integration</h3>
+            <p>How to add the booking widget to WordPress using HTML blocks.</p>
+
+            <div class="code">
+&lt;!-- Add this to a Custom HTML block in WordPress --&gt;
+&lt;div class="booking-widget-container"&gt;
+    &lt;h3&gt;Book Your Tickets&lt;/h3&gt;
+    &lt;div id="wp-booking-widget"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="https://your-booking-system.com/booking-widget.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    createBookingWidget({
+        containerId: 'wp-booking-widget',
+        showId: 'abc123',
+        performanceId: 'def456',
+        responsive: true,
+        onBookingComplete: function(data) {
+            alert('Booking confirmed: ' + data.bookingNumber);
+        }
+    });
+&lt;/script&gt;
+
+&lt;style&gt;
+.booking-widget-container {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+&lt;/style&gt;
+            </div>
+
+            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px;">
+                <h4 style="margin-top: 0;">Book Your Tickets</h4>
+                <div class="widget-demo" id="wp-booking-widget">
+                    <p>WordPress booking widget would appear here</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 8: E-commerce Integration -->
+        <div class="example">
+            <h3>8. E-commerce Integration</h3>
+            <p>Integration with order tracking and inventory management.</p>
+
+            <div class="code">
+&lt;div class="product-booking"&gt;
+    &lt;h2&gt;Shakespeare's Hamlet - March 15, 8:00 PM&lt;/h2&gt;
+    &lt;div class="price-info"&gt;
+        &lt;p&gt;Adult: £25.00 | Child: £15.00 | Concession: £20.00&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id="ecommerce-booking-widget"&gt;&lt;/div&gt;
+    &lt;div id="order-status"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="https://your-booking-system.com/booking-widget.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    createBookingWidget({
+        containerId: 'ecommerce-booking-widget',
+        showId: 'hamlet-2024',
+        performanceId: 'hamlet-march-15',
+        responsive: true,
+        onBookingComplete: function(data) {
+            // Update order status
+            document.getElementById('order-status').innerHTML =
+                '&lt;div class="order-success"&gt;Order completed! Booking: ' + data.bookingNumber + '&lt;/div&gt;';
+
+            // Track conversion
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'purchase', {
+                    transaction_id: data.bookingNumber,
+                    value: data.totalAmount,
+                    currency: 'GBP',
+                    items: [{
+                        item_id: data.showTitle,
+                        item_name: data.showTitle,
+                        category: 'Theatre Tickets',
+                        quantity: 1,
+                        price: data.totalAmount
+                    }]
+                });
+            }
+
+            // Hide booking widget after completion
+            document.getElementById('ecommerce-booking-widget').style.display = 'none';
+        }
+    });
+&lt;/script&gt;
+            </div>
+
+            <div style="border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
+                <h4 style="margin-top: 0;">Shakespeare's Hamlet - March 15, 8:00 PM</h4>
+                <div style="background: #e7f3ff; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+                    <p style="margin: 0;"><strong>Prices:</strong> Adult: £25.00 | Child: £15.00 | Concession: £20.00</p>
+                </div>
+                <div class="widget-demo" id="ecommerce-booking-widget">
+                    <p>E-commerce booking widget would appear here<br>
+                    <small>Includes conversion tracking and order management</small></p>
+                </div>
+                <div id="order-status"></div>
+            </div>
+        </div>
+
+        <!-- Technical Information -->
+        <div class="example">
+            <h3>Technical Information</h3>
+
+            <div class="warning">
+                <strong>Important:</strong> Before implementing, make sure to:
+                <ul>
+                    <li>Replace placeholder URLs with your actual booking system domain</li>
+                    <li>Use real show IDs and performance IDs from your system</li>
+                    <li>Test the embedding on your actual website</li>
+                    <li>Check mobile responsiveness</li>
+                </ul>
+            </div>
+
+            <h4>Getting Show and Performance IDs</h4>
+            <p>To find the correct IDs for your shows:</p>
+            <ol>
+                <li>Go to your booking system admin dashboard</li>
+                <li>Navigate to Shows → View show details</li>
+                <li>Copy the Show ID and Performance ID from the URL or details page</li>
+                <li>Or use the API: <code>GET /api/shows</code> to list all shows and performances</li>
+            </ol>
+
+            <h4>Security Considerations</h4>
+            <ul>
+                <li>The embed system includes CORS headers for cross-origin requests</li>
+                <li>Iframe embedding is enabled with appropriate security headers</li>
+                <li>All booking data is transmitted securely over HTTPS</li>
+                <li>Payment processing (if implemented) follows PCI DSS guidelines</li>
+            </ul>
+
+            <h4>Browser Compatibility</h4>
+            <ul>
+                <li>Chrome 60+</li>
+                <li>Firefox 55+</li>
+                <li>Safari 12+</li>
+                <li>Edge 79+</li>
+                <li>Mobile browsers (iOS Safari, Chrome Mobile)</li>
+            </ul>
+
+            <div class="success">
+                <strong>Success!</strong> You've explored all the embedding options. Choose the method that best fits your website's architecture and requirements.
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the actual widget script for demonstration -->
+    <!-- <script src="https://your-booking-system.com/booking-widget.js"></script> -->
+
+    <!-- Simulate the widget script for this demo -->
+    <script>
+        // This is a demo version - replace with actual script URL
+        console.log('Booking widget examples loaded');
+
+        // Mock implementation for demonstration
+        window.createBookingWidget = function(options) {
+            console.log('Mock booking widget created with options:', options);
+            var container = document.getElementById(options.containerId);
+            if (container && container.classList.contains('widget-demo')) {
+                container.innerHTML = '<p style="color: #007cba;"><strong>✓ Booking widget would be active here</strong><br><small>Using: ' + options.showId + ' / ' + options.performanceId + '</small></p>';
+            }
+        };
+
+        // Auto-initialize widgets
+        document.addEventListener('DOMContentLoaded', function() {
+            var widgets = document.querySelectorAll('[data-booking-widget]');
+            widgets.forEach(function(widget) {
+                if (widget.classList.contains('widget-demo')) {
+                    widget.innerHTML = '<p style="color: #007cba;"><strong>✓ Auto-initialized booking widget</strong><br><small>Show: ' + widget.getAttribute('data-show-id') + ' / Performance: ' + widget.getAttribute('data-performance-id') + '</small></p>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,103 +1,152 @@
-import Image from "next/image";
+'use client'
+
+import React, { useEffect, useState } from 'react'
+import { ShowListing } from '../components/ui/show-listing'
+import { Show, ShowStatus } from '../types'
+
+interface ApiShow {
+  id: string
+  title: string
+  slug: string
+  description?: string
+  genre?: string
+  duration?: number
+  ageRating?: string
+  adultPrice: number
+  childPrice: number
+  concessionPrice: number
+  status: string
+  performances: {
+    id: string
+    dateTime: string
+    isMatinee: boolean
+    notes?: string
+  }[]
+}
+
+// Converting API shows to the Show interface format
+const convertApiShowToShow = (apiShow: ApiShow): Show => ({
+  id: apiShow.id,
+  title: apiShow.title,
+  slug: apiShow.slug,
+  description: apiShow.description || '',
+  imageUrl: '/api/placeholder/400/300', // Default placeholder
+  genre: apiShow.genre || '',
+  duration: apiShow.duration || 120,
+  ageRating: apiShow.ageRating || 'PG',
+  warnings: undefined,
+  adultPrice: apiShow.adultPrice,
+  childPrice: apiShow.childPrice,
+  concessionPrice: apiShow.concessionPrice,
+  status: apiShow.status as ShowStatus,
+  organizationId: '1', // Default for now
+  venueId: '1', // Default for now
+  seatingLayoutId: '1', // Default for now
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  performances: apiShow.performances.map(p => ({
+    id: p.id,
+    dateTime: new Date(p.dateTime),
+    isMatinee: p.isMatinee,
+    showId: apiShow.id,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    bookings: []
+  }))
+})
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [shows, setShows] = useState<Show[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const fetchShows = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch('/api/shows?published=true')
+        const data = await response.json()
+
+        if (data.success) {
+          const convertedShows = data.data.map(convertApiShowToShow)
+          setShows(convertedShows)
+        } else {
+          setError(data.error || 'Failed to fetch shows')
+        }
+      } catch (err) {
+        setError('Error fetching shows')
+        console.error('Error:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchShows()
+  }, [])
+
+  const handleBookShow = (showId: string, performanceId: string) => {
+    console.log('Book show:', { showId, performanceId })
+    // Navigate to booking page
+    window.location.href = `/book/${showId}/${performanceId}`
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Demo Theatre</h1>
+              <p className="text-gray-600">Community Drama Group</p>
+            </div>
+            <nav className="hidden md:flex space-x-8">
+              <a href="/" className="text-blue-600 font-medium">What's On</a>
+              <a href="/admin" className="text-gray-600 hover:text-gray-900">Admin</a>
+            </nav>
+          </div>
         </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {loading ? (
+          <div className="flex items-center justify-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        ) : error ? (
+          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+            <h3 className="text-red-800 font-medium">Error loading shows</h3>
+            <p className="text-red-600 mt-1">{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="mt-3 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+            >
+              Try Again
+            </button>
+          </div>
+        ) : (
+          <ShowListing
+            shows={shows}
+            onBookShow={handleBookShow}
+          />
+        )}
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center text-gray-600">
+            <p>&copy; 2024 Demo Theatre. All rights reserved.</p>
+            <p className="mt-2 text-sm">
+              Contact information and additional links can be configured in{' '}
+              <a href="/admin/settings" className="text-blue-600 hover:text-blue-800">
+                Admin Settings
+              </a>
+            </p>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }

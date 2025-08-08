@@ -1,36 +1,378 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EventSeats - Open Source Event Booking System
 
-## Getting Started
+🎪 **A free, open-source seat booking system designed for small venues, theatre groups, and community events.**
 
-First, run the development server:
+Built for organizations with small budgets but big dreams. Professional booking experience without enterprise costs.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38bdf8)](https://tailwindcss.com/)
+
+🌐 **Live Demo:** [demo.eventseats.hannahgoodridge.dev](https://demo.eventseats.hannahgoodridge.dev)
+📖 **Documentation:** [eventseats.hannahgoodridge.dev/docs](https://eventseats.hannahgoodridge.dev/docs)
+💬 **Built by:** [Hannah Goodridge](https://hannahgoodridge.dev)
+
+---
+
+## 🚀 Quick Start
+
+### Option 1: One-Click Deploy (Recommended for Testing)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/hannahgoodridge/show-bookings-system)
+
+### Option 2: Local Development
 
 ```bash
+# Clone the repository
+git clone https://github.com/hannahgoodridge/show-bookings-system.git
+cd show-bookings-system
+
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp env.example .env.local
+
+# Set up the database
+npm run setup-db
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) to see your booking system!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Features
 
-## Learn More
+- 🎫 **Interactive Seat Selection**: Visual seat map with real-time availability
+- 🎭 **Multiple Ticket Types**: Adult, child, and concession pricing
+- 📱 **Mobile Responsive**: Works perfectly on all devices
+- 🔒 **Secure**: Built with security best practices
+- 🌐 **Embeddable**: Simple iframe embedding for any website
+- 📊 **Admin Dashboard**: Manage shows, performances, and bookings
+- 🎪 **Multi-Venue Support**: Perfect for theatre groups and community centres
+- 📧 **Email Notifications**: Automated booking confirmations
+- 🏷️ **QR Code Tickets**: Digital tickets with QR codes
+- 🔓 **Open Source**: MIT licensed, self-host for free
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏗️ Full Setup Guide
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerequisites
 
-## Deploy on Vercel
+- **Node.js** 18+ ([Download here](https://nodejs.org/))
+- **PostgreSQL** or **Supabase** account ([Get free account](https://supabase.com/))
+- **Stripe** account for payments ([Get account](https://stripe.com/))
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Step 1: Clone and Install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+git clone https://github.com/hannahgoodridge/show-bookings-system.git
+cd show-bookings-system
+npm install
+```
+
+### Step 2: Environment Setup
+
+Copy the example environment file:
+```bash
+cp env.example .env.local
+```
+
+Edit `.env.local` with your values:
+```env
+# Database (Supabase recommended)
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+
+# NextAuth.js
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_secret_key
+
+# Stripe (optional for payments)
+STRIPE_SECRET_KEY=sk_test_...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+```
+
+### Step 3: Database Setup
+
+**Option A: Supabase (Recommended)**
+1. Create account at [supabase.com](https://supabase.com/)
+2. Create new project
+3. Run the setup script:
+```bash
+npm run setup-supabase
+```
+
+**Option B: Local PostgreSQL**
+```bash
+# Install PostgreSQL locally
+# Create database
+createdb eventseats
+
+# Run setup
+npm run setup-db
+```
+
+### Step 4: Run the Application
+
+```bash
+# Development mode
+npm run dev
+
+# Production build
+npm run build
+npm start
+```
+
+### Step 5: Initial Setup
+
+1. Visit `http://localhost:3000/admin/login`
+2. Create your first admin account
+3. Add your venue and seating layout
+4. Create your first show
+5. Start selling tickets! 🎉
+
+---
+
+## 📖 Documentation
+
+### For Users
+- **[User Guide](docs/user-guide.md)** - How to use the booking system
+- **[Admin Guide](docs/admin-guide.md)** - Managing shows and bookings
+- **[Embedding Guide](docs/embedding.md)** - Add booking to your website
+
+### For Developers
+- **[API Documentation](docs/api.md)** - REST API reference
+- **[Database Schema](docs/database.md)** - Database structure
+- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
+- **[Deployment Guide](docs/deployment/)** - Production deployment
+
+---
+
+## 🚀 Deployment Options
+
+### Hosted Services
+
+| Service | Cost | Difficulty | Best For |
+|---------|------|------------|----------|
+| **Vercel** | Free tier available | Easy | Quick testing |
+| **Railway** | $5/month | Easy | Production ready |
+| **DigitalOcean App Platform** | $5/month | Medium | Scalable apps |
+| **AWS/GCP** | Variable | Hard | Enterprise |
+
+### Self-Hosted
+
+- **VPS** (DigitalOcean, Linode, Vultr)
+- **Docker** deployment included
+- **PM2** process management
+- **Nginx** reverse proxy setup
+
+See our **[Deployment Guide](docs/deployment/)** for detailed instructions.
+
+---
+
+## 🤝 Contributing
+
+We love contributions! EventSeats is built by the community, for the community.
+
+### Quick Contributing Guide
+
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
+3. **Make** your changes
+4. **Test** thoroughly: `npm test`
+5. **Commit** with clear message: `git commit -m 'Add amazing feature'`
+6. **Push** to branch: `git push origin feature/amazing-feature`
+7. **Open** a Pull Request
+
+### Development Setup
+
+```bash
+# Clone your fork
+git clone https://github.com/YOUR_USERNAME/show-bookings-system.git
+cd show-bookings-system
+
+# Add upstream remote
+git remote add upstream https://github.com/hannahgoodridge/show-bookings-system.git
+
+# Install dependencies
+npm install
+
+# Run tests
+npm test
+
+# Start development
+npm run dev
+```
+
+### What We Need Help With
+
+- 🌍 **Translations** - Make EventSeats available in more languages
+- 🎨 **Themes** - Create beautiful themes for different types of events
+- 🔌 **Integrations** - Payment gateways, email services, CRM systems
+- 📱 **Mobile App** - React Native companion app
+- 🧪 **Testing** - More comprehensive test coverage
+- 📚 **Documentation** - Improve guides and tutorials
+
+See **[CONTRIBUTING.md](CONTRIBUTING.md)** for detailed guidelines.
+
+---
+
+## 💬 Community & Support
+
+### Get Help
+- 📚 **[Documentation](https://eventseats.hannahgoodridge.dev/docs)**
+- 💬 **[GitHub Discussions](https://github.com/hannahgoodridge/show-bookings-system/discussions)**
+- 🐛 **[Issue Tracker](https://github.com/hannahgoodridge/show-bookings-system/issues)**
+- 📧 **Email:** [hello@hannahgoodridge.dev](mailto:hello@hannahgoodridge.dev)
+
+### Show Your Support
+- ⭐ **Star this repository** if it helps you!
+- 🐦 **Share on social media** with #EventSeats
+- 💝 **[Sponsor the project](https://github.com/sponsors/hannahgoodridge)**
+
+---
+
+## 📜 License
+
+EventSeats is **MIT licensed**. You can:
+- ✅ Use commercially
+- ✅ Modify freely
+- ✅ Distribute
+- ✅ Sub-license
+- ✅ Use privately
+
+See **[LICENSE](LICENSE)** for full details.
+
+---
+
+## 🙏 Acknowledgements
+
+Built with amazing open-source tools:
+- **[Next.js](https://nextjs.org/)** - React framework
+- **[Supabase](https://supabase.com/)** - Database and auth
+- **[Tailwind CSS](https://tailwindcss.com/)** - Styling
+- **[TypeScript](https://www.typescriptlang.org/)** - Type safety
+
+Special thanks to all **[contributors](https://github.com/hannahgoodridge/show-bookings-system/graphs/contributors)** who make EventSeats better! 🎭
+
+---
+
+<div align="center">
+
+**Made with ❤️ by [Hannah Goodridge](https://hannahgoodridge.dev)**
+
+[⭐ Star on GitHub](https://github.com/hannahgoodridge/show-bookings-system) • [🌐 Live Demo](https://demo.eventseats.hannahgoodridge.dev) • [📖 Documentation](https://eventseats.hannahgoodridge.dev/docs)
+
+</div>
+- 📧 **Email Notifications**: Automated booking confirmations
+- 🎨 **Customizable**: Venue layouts, branding, and pricing
+- 📱 **Mobile Responsive**: Works on all devices
+- 🔒 **Admin Dashboard**: Manage shows, bookings, and check-ins
+- 📊 **Analytics**: Track sales and popular shows
+
+## Quick Start
+
+### One-Click Deploy Options
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/show-bookings-system)
+
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.app/template/xxx)
+
+### Manual Setup
+
+#### Option 1: Supabase Setup (Recommended)
+
+**Easiest and most reliable setup with built-in auth and real-time features:**
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/show-bookings-system.git
+   cd show-bookings-system
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   npm install @supabase/supabase-js
+   ```
+
+3. **Create Supabase project** at [supabase.com](https://supabase.com)
+
+4. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+   Add your Supabase URL and anon key (see [Supabase Setup Guide](./docs/setup-supabase.md))
+
+5. **Create database tables** using Supabase SQL Editor
+
+6. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+#### Option 2: Traditional Database Setup
+
+**For those who prefer direct PostgreSQL connections:**
+
+1. **Clone and install** (same as above)
+2. **Set up database** (PostgreSQL/MySQL)
+3. **Configure environment variables**
+4. **Run migrations**
+   ```bash
+   npm run setup-demo
+   ```
+5. **Start development server**
+
+## Documentation
+
+- 🚀 **[Supabase Setup Guide (Recommended)](./docs/setup-supabase.md)**
+- 📚 [Traditional Setup Guide](./docs/setup.md)
+- ⚙️ [Environment Configuration Examples](./docs/examples/environment-configs.md)
+- 🚀 **Deployment Guides:**
+  - [Deploy to Vercel](./docs/deployment/vercel.md)
+  - [Deploy to Railway](./docs/deployment/railway.md)
+  - [Self-Hosted Deployment](./docs/deployment/self-hosted.md)
+- 🎭 [Venue Setup Examples](./docs/examples/venue-setups.md)
+- 🔧 [API Documentation](./docs/api.md)
+
+## Cost Breakdown
+
+### Minimum Running Costs
+- **Domain**: £10-15/year
+- **Hosting**: Free (Vercel/Netlify)
+- **Database**: Free tier (Supabase/PlanetScale)
+- **Payment Processing**: 2.9% + 30p per transaction (Stripe)
+- **Email**: Free tier (most providers)
+
+**Total**: ~£1-2/month + payment processing fees
+
+## Community
+
+- 🐛 [Report Issues](https://github.com/yourusername/show-bookings-system/issues)
+- 💬 [Discussions](https://github.com/yourusername/show-bookings-system/discussions)
+- 📖 [Documentation](./docs/)
+- ❤️ [Contributing](./CONTRIBUTING.md)
+
+## License
+
+MIT License - see [LICENSE](./LICENSE) for details.
+
+## Support the Project
+
+If this project helps your drama group, consider:
+- ⭐ Starring the repository
+- 🐛 Reporting bugs or suggesting features
+- 💝 [Sponsoring development](https://github.com/sponsors/yourusername)
+- 🗣️ Sharing with other drama groups
+
+---
+
+**Built with ❤️ for the theatre community**
