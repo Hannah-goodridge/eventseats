@@ -17,7 +17,7 @@ export interface SeatingLayout {
   description?: string;
   rows: number;
   columns: number;
-  layoutData: any; // JSON data for the layout
+  layoutData: Record<string, unknown>; // JSON data for the layout
   seats: Seat[];
 }
 

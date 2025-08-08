@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { Booking } from '../../../types'
 import { Button } from '../../../components/ui/button'
 
@@ -50,7 +51,7 @@ export default function AdminBookingsPage() {
 
       if (data.success) {
         // Transform the data to match the expected format
-        const transformedBookings = data.data.map((booking: any) => ({
+        const transformedBookings = data.data.map((booking: Record<string, any>) => ({
           id: booking.id,
           bookingNumber: booking.bookingNumber,
           status: booking.status,
@@ -94,7 +95,7 @@ export default function AdminBookingsPage() {
       } else {
         console.error('Failed to load bookings:', data.error)
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error loading bookings:', error)
     } finally {
       setIsLoading(false)

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { auth } from '@/lib/auth'
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     // Check authentication
     const session = await auth()
@@ -157,11 +157,12 @@ export async function GET(request: NextRequest) {
       }
     })
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error fetching admin dashboard data:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Failed to fetch dashboard data'
     return NextResponse.json({
       success: false,
-      error: error.message || 'Failed to fetch dashboard data'
+      error: errorMessage
     }, { status: 500 })
   }
 }

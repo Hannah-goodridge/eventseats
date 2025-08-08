@@ -651,7 +651,7 @@ export default function AdminSettingsPage() {
                     <ul className="text-sm text-blue-800 space-y-1">
                       <li>• Configure external links to your main website, social media, and legal pages</li>
                       <li>• These can be added to your main navigation or footer as needed</li>
-                      <li>• Leave fields empty if you don't have those pages/accounts</li>
+                      <li>• Leave fields empty if you don&#39;t have those pages/accounts</li>
                       <li>• Links will open in new tabs when clicked</li>
                     </ul>
                   </div>

@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
     console.error('Error creating performance:', error)
     return NextResponse.json({
       success: false,
-      error: error.message || 'Failed to create performance'
+      error: error instanceof Error ? error.message : 'Failed to create performance'
     }, { status: 500 })
   }
 }

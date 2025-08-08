@@ -88,7 +88,7 @@ export default function MarketingPage() {
                       </div>
                       <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Interactive Seat Selection</h3>
                       <p className="mt-5 text-base text-gray-500">
-                        Visual seat maps with real-time availability. Customers can see exactly where they'll sit.
+                        Visual seat maps with real-time availability. Customers can see exactly where they&#39;ll sit.
                       </p>
                     </div>
                   </div>
@@ -145,7 +145,7 @@ export default function MarketingPage() {
                       </div>
                       <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Lightning Fast</h3>
                       <p className="mt-5 text-base text-gray-500">
-                        Built with Next.js and optimized for speed. Your customers won't wait around to buy tickets.
+                        Built with Next.js and optimized for speed. Your customers won&#39;t wait around to buy tickets.
                       </p>
                     </div>
                   </div>
