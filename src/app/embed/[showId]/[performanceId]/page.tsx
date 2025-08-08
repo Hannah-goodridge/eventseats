@@ -61,7 +61,7 @@ export default function EmbedBookingRoute() {
           title: foundShow.title,
           slug: foundShow.slug,
           description: foundShow.description || '',
-          imageUrl: '/api/placeholder/400/300',
+          imageUrl: '',
           genre: foundShow.genre || '',
           duration: foundShow.duration || 120,
           ageRating: foundShow.ageRating || 'PG',

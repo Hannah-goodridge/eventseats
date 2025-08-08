@@ -208,16 +208,39 @@ export const BookingPage: React.FC<BookingPageProps> = ({
           {/* Show Image */}
           <div className="md:col-span-1">
             <div className="relative h-48 md:h-64 w-full rounded-lg overflow-hidden shadow-md">
-              <Image
-                src={show.imageUrl || `/api/placeholder/400/256`}
-                alt={show.title}
-                fill
-                className="object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.src = `/api/placeholder/400/256`
+              {show.imageUrl ? (
+                <Image
+                  src={show.imageUrl}
+                  alt={show.title}
+                  fill
+                  className="object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement
+                    target.style.display = 'none'
+                    const placeholder = target.nextElementSibling as HTMLElement
+                    if (placeholder) {
+                      placeholder.style.display = 'block'
+                    }
+                  }}
+                />
+              ) : null}
+              {/* Placeholder image - shown when no image URL or when image fails to load */}
+              <div
+                className={`absolute inset-0 ${show.imageUrl ? 'hidden' : 'block'}`}
+                style={{
+                  background: 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)',
+                  display: show.imageUrl ? 'none' : 'block'
                 }}
-              />
+              >
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <svg className="w-16 h-16 mx-auto mb-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+                    </svg>
+                    <p className="text-sm text-gray-500">Show Image</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

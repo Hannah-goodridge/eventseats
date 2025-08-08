@@ -30,7 +30,7 @@ const convertApiShowToShow = (apiShow: ApiShow): Show => ({
   title: apiShow.title,
   slug: apiShow.slug,
   description: apiShow.description || '',
-  imageUrl: '/api/placeholder/400/300', // Default placeholder
+  imageUrl: '', // No image - will use CSS placeholder
   genre: apiShow.genre || '',
   duration: apiShow.duration || 120,
   ageRating: apiShow.ageRating || 'PG',
