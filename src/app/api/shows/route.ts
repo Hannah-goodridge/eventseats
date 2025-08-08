@@ -5,6 +5,7 @@ import { randomUUID } from 'crypto'
 interface CreateShowRequest {
   title: string
   description?: string
+  imageUrl?: string
   genre?: string
   duration?: number
   ageRating?: string
@@ -40,6 +41,7 @@ export async function POST(request: NextRequest) {
         title: body.title,
         slug: slug,
         description: body.description || '',
+        imageUrl: body.imageUrl || null,
         genre: body.genre || '',
         duration: body.duration || 120,
         ageRating: body.ageRating || 'PG',
@@ -91,6 +93,7 @@ export async function GET(request: NextRequest) {
         title,
         slug,
         description,
+        imageUrl,
         genre,
         duration,
         ageRating,

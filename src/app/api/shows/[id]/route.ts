@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase'
 interface UpdateShowRequest {
   title?: string
   description?: string
+  imageUrl?: string
   genre?: string
   duration?: number
   ageRating?: string
@@ -27,6 +28,7 @@ export async function GET(
         title,
         slug,
         description,
+        imageUrl,
         genre,
         duration,
         ageRating,
@@ -92,6 +94,7 @@ export async function PUT(
       updateData.slug = body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
     }
     if (body.description !== undefined) updateData.description = body.description
+    if (body.imageUrl !== undefined) updateData.imageUrl = body.imageUrl
     if (body.genre !== undefined) updateData.genre = body.genre
     if (body.duration !== undefined) updateData.duration = body.duration
     if (body.ageRating !== undefined) updateData.ageRating = body.ageRating

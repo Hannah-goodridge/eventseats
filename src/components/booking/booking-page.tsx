@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useMemo } from 'react'
+import Image from 'next/image'
 import { SeatGrid } from '../seat/seat-grid'
 import { BookingForm } from './booking-form'
 import { Button } from '../ui/button'
@@ -201,15 +202,41 @@ export const BookingPage: React.FC<BookingPageProps> = ({
 
   return (
     <div className={cn('max-w-6xl mx-auto p-6', className)}>
-      {/* Show Header */}
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">{show.title}</h1>
-        <p className="text-lg text-gray-700">{formatDateTime(performance.dateTime)}</p>
-        {performance.isMatinee && (
-          <span className="inline-block mt-2 px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded">
-            Matinee Performance
-          </span>
-        )}
+      {/* Show Header with Image */}
+      <div className="mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+          {/* Show Image */}
+          <div className="md:col-span-1">
+            <div className="relative h-48 md:h-64 w-full rounded-lg overflow-hidden shadow-md">
+              <Image
+                src={show.imageUrl || `/api/placeholder/400/256`}
+                alt={show.title}
+                fill
+                className="object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.src = `/api/placeholder/400/256`
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Show Details */}
+          <div className="md:col-span-2 text-center md:text-left">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{show.title}</h1>
+            <p className="text-lg text-gray-700 mb-2">{formatDateTime(performance.dateTime)}</p>
+            {performance.isMatinee && (
+              <span className="inline-block mb-3 px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded">
+                Matinee Performance
+              </span>
+            )}
+            {show.genre && (
+              <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded">
+                {show.genre}
+              </span>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Step Indicator */}

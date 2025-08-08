@@ -26,25 +26,19 @@ const ShowCard: React.FC<ShowCardProps> = ({ show, onBookShow }) => {
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
       {/* Show Image */}
-      {show.imageUrl ? (
-        <div className="relative h-48 w-full">
-          <Image
-            src={show.imageUrl}
-            alt={show.title}
-            fill
-            className="object-cover"
-          />
-        </div>
-      ) : (
-        <div className="h-48 bg-gray-200 flex items-center justify-center">
-          <div className="text-gray-400 text-center">
-            <svg className="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-            </svg>
-            <p className="text-sm">No image available</p>
-          </div>
-        </div>
-      )}
+      <div className="relative h-48 w-full">
+        <Image
+          src={show.imageUrl || `/api/placeholder/400/192`}
+          alt={show.title}
+          fill
+          className="object-cover"
+          onError={(e) => {
+            // Fallback to placeholder if image fails to load
+            const target = e.target as HTMLImageElement
+            target.src = `/api/placeholder/400/192`
+          }}
+        />
+      </div>
 
       <div className="p-6">
         {/* Show Title and Genre */}

@@ -122,10 +122,17 @@ Go to [http://localhost:3000/admin/login](http://localhost:3000/admin/login) to 
    - You can modify this or create new layouts
    - Add accessibility information for seats
 
+4. **Add Show Images**
+   - Upload your show images to an image hosting service (Imgur, Cloudinary, etc.)
+   - Copy the image URL and paste it in the "Image URL" field
+   - Leave empty to use a placeholder image
+   - Recommended image size: 400x300 pixels or larger
+
 3. **Create Your First Show**
    - Go to Admin → Shows
    - Click "Add Show"
    - Set title, description, prices
+   - Add an image URL (optional - leave empty for placeholder)
    - Add performance dates and times
 
 4. **Start Taking Bookings!**

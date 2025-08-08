@@ -11,6 +11,7 @@ interface Show {
   status: string
   slug: string
   description?: string
+  imageUrl?: string
   genre?: string
   duration?: number
   ageRating?: string
@@ -31,6 +32,7 @@ interface EditingShow {
   id?: string
   title: string
   description: string
+  imageUrl?: string
   genre: string
   duration: number
   ageRating: string
@@ -87,6 +89,7 @@ export default function AdminShowsPage() {
       id: show.id,
       title: show.title,
       description: show.description || '',
+      imageUrl: show.imageUrl || '',
       genre: show.genre || '',
       duration: show.duration || 120,
       ageRating: show.ageRating || 'PG',
@@ -102,6 +105,7 @@ export default function AdminShowsPage() {
     setEditingShow({
       title: '',
       description: '',
+      imageUrl: '',
       genre: '',
       duration: 120,
       ageRating: 'PG',
@@ -482,6 +486,22 @@ export default function AdminShowsPage() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Enter show description"
                   />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-800 mb-1">Image URL (Optional)</label>
+                  <input
+                    type="url"
+                    value={editingShow.imageUrl || ''}
+                    onChange={(e) => setEditingShow(prev => prev ? {...prev, imageUrl: e.target.value} : null)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="https://example.com/show-image.jpg"
+                  />
+                  <p className="text-xs text-gray-600 mt-1">
+                    Leave empty to use a placeholder image. Recommended size: 400x300 pixels or larger.
+                    <br />
+                    <span className="text-blue-600">💡 Tip:</span> Upload images to <a href="https://imgur.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Imgur</a>, <a href="https://cloudinary.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Cloudinary</a>, or your own server.
+                  </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
