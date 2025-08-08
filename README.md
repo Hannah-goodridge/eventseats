@@ -9,7 +9,7 @@ Built for organizations with small budgets but big dreams. Professional booking 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38bdf8)](https://tailwindcss.com/)
 
-🌐 **Live Demo:** [demo.eventseats.hannahgoodridge.dev](https://demo.eventseats.hannahgoodridge.dev)
+🌐 **Live Demo:** [demo.eventseats.hannahgoodridge.dev](https://eventseats.hannahgoodridge.dev)
 📖 **Documentation:** [eventseats.hannahgoodridge.dev/docs](https://eventseats.hannahgoodridge.dev/docs)
 💬 **Built by:** [Hannah Goodridge](https://hannahgoodridge.dev)
 
@@ -268,7 +268,7 @@ Special thanks to all **[contributors](https://github.com/Hannah-goodridge/event
 
 **Made with ❤️ by [Hannah Goodridge](https://hannahgoodridge.dev)**
 
-[⭐ Star on GitHub](https://github.com/Hannah-goodridge/eventseats) • [🌐 Live Demo](https://demo.eventseats.hannahgoodridge.dev) • [📖 Documentation](https://eventseats.hannahgoodridge.dev/docs)
+[⭐ Star on GitHub](https://github.com/Hannah-goodridge/eventseats) • [🌐 Live Demo](https://eventseats.hannahgoodridge.dev) • [📖 Documentation](https://eventseats.hannahgoodridge.dev/docs)
 
 </div>
 - 📧 **Email Notifications**: Automated booking confirmations
