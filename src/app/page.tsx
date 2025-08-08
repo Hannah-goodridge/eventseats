@@ -65,7 +65,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         setLoading(true)
-        
+
         // Fetch settings and shows in parallel
         const [settingsResponse, showsResponse] = await Promise.all([
           fetch('/api/settings'),
