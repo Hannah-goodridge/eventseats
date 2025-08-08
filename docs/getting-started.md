@@ -61,7 +61,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_random_secret_here
 
-# Optional: Stripe for payments
+# Optional: Stripe for payments (work in progress)
 STRIPE_SECRET_KEY=sk_test_...
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
 ```
@@ -136,7 +136,7 @@ Go to [http://localhost:3000/admin/login](http://localhost:3000/admin/login) to 
 ### Customize Your Installation
 
 - **Branding:** Update colors, logos, and text
-- **Payment Processing:** Set up Stripe for credit card payments
+- **Payment Processing:** Set up Stripe for credit card payments (work in progress)
 - **Email Notifications:** Configure email settings for confirmations
 - **Custom Domain:** Deploy to your own domain
 
@@ -181,10 +181,9 @@ npm install
 
 ### Get Support
 
-- 📚 **[Full Documentation](https://eventseats.hannahgoodridge.dev/docs)**
+- 📚 **[GitHub Documentation](https://github.com/Hannah-goodridge/eventseats/tree/main/docs)**
 - 💬 **[GitHub Discussions](https://github.com/Hannah-goodridge/eventseats/discussions)**
 - 🐛 **[Report Issues](https://github.com/Hannah-goodridge/eventseats/issues)**
-- 📧 **Email:** [hello@hannahgoodridge.dev](mailto:hello@hannahgoodridge.dev)
 
 ### Contributing
 
@@ -206,7 +205,7 @@ You now have your own professional event booking system running!
 - ✅ Take online bookings 24/7
 - ✅ Manage events and performances
 - ✅ Track sales and attendance
-- ✅ Accept payments securely
+- ✅ Accept payments securely (Stripe integration in progress)
 - ✅ Generate tickets with QR codes
 - ✅ Embed booking on your website
 

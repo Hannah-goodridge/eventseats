@@ -9,8 +9,8 @@ Built for organizations with small budgets but big dreams. Professional booking 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38bdf8)](https://tailwindcss.com/)
 
-🌐 **Live Demo:** [demo.eventseats.hannahgoodridge.dev](https://eventseats.hannahgoodridge.dev)
-📖 **Documentation:** [eventseats.hannahgoodridge.dev/docs](https://eventseats.hannahgoodridge.dev/docs)
+🌐 **Live Demo:** [eventseats.hannahgoodridge.dev](https://eventseats.hannahgoodridge.dev)
+📖 **Documentation:** [GitHub Docs](https://github.com/Hannah-goodridge/eventseats/tree/main/docs)
 💬 **Built by:** [Hannah Goodridge](https://hannahgoodridge.dev)
 
 ---
@@ -56,6 +56,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see your booking system!
 - 🎪 **Multi-Venue Support**: Perfect for theatre groups and community centres
 - 📧 **Email Notifications**: Automated booking confirmations
 - 🏷️ **QR Code Tickets**: Digital tickets with QR codes
+- 💳 **Payment Processing**: Stripe integration (work in progress)
 - 🔓 **Open Source**: MIT licensed, self-host for free
 
 ---
@@ -66,7 +67,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see your booking system!
 
 - **Node.js** 18+ ([Download here](https://nodejs.org/))
 - **PostgreSQL** or **Supabase** account ([Get free account](https://supabase.com/))
-- **Stripe** account for payments - **Optional** ([Get account](https://stripe.com/))
+- **Stripe** account for payments - **Optional** (work in progress) ([Get account](https://stripe.com/))
 
 ### Step 1: Clone and Install
 
@@ -94,7 +95,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_secret_key
 
-# Stripe (optional for payments)
+# Stripe (optional for payments - work in progress)
 STRIPE_SECRET_KEY=sk_test_...
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
 ```
@@ -142,16 +143,26 @@ npm start
 
 ## 📖 Documentation
 
-### For Users
-- **[User Guide](docs/user-guide.md)** - How to use the booking system
-- **[Admin Guide](docs/admin-guide.md)** - Managing shows and bookings
+### Getting Started
+- **[Quick Start Guide](docs/getting-started.md)** - Set up EventSeats in minutes
 - **[Embedding Guide](docs/embedding.md)** - Add booking to your website
+- **[Simple Embedding](docs/simple-embedding.md)** - Quick embed setup
+
+### Deployment
+- **[Vercel Deployment](docs/deployment/vercel.md)** - One-click deployment
+- **[Railway Deployment](docs/deployment/railway.md)** - Simple hosting
+- **[Self-Hosted Setup](docs/deployment/self-hosted.md)** - VPS deployment
+- **[Squarespace Integration](docs/deployment/squarespace-deployment.md)** - Website integration
+
+### Examples & Setup
+- **[Venue Setup Examples](docs/examples/venue-setups.md)** - Real venue configurations
+- **[Embed Examples](docs/examples/embed-examples.html)** - HTML embedding examples
+- **[Demo User Setup](docs/setup-demo-user.sql)** - Database setup script
 
 ### For Developers
-- **[API Documentation](docs/api.md)** - REST API reference
-- **[Database Schema](docs/database.md)** - Database structure
 - **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
-- **[Deployment Guide](docs/deployment/)** - Production deployment
+- **[API Documentation](docs/api.md)** - REST API reference (coming soon)
+- **[Database Schema](docs/database.md)** - Database structure (coming soon)
 
 ---
 
@@ -227,10 +238,9 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)** for detailed guidelines.
 ## 💬 Community & Support
 
 ### Get Help
-- 📚 **[Documentation](https://eventseats.hannahgoodridge.dev/docs)**
+- 📚 **[GitHub Documentation](https://github.com/Hannah-goodridge/eventseats/tree/main/docs)**
 - 💬 **[GitHub Discussions](https://github.com/Hannah-goodridge/eventseats/discussions)**
 - 🐛 **[Issue Tracker](https://github.com/Hannah-goodridge/eventseats/issues)**
-- 📧 **Email:** [hello@hannahgoodridge.dev](mailto:hello@hannahgoodridge.dev)
 
 ### Show Your Support
 - ⭐ **Star this repository** if it helps you!
@@ -268,7 +278,7 @@ Special thanks to all **[contributors](https://github.com/Hannah-goodridge/event
 
 **Made with ❤️ by [Hannah Goodridge](https://hannahgoodridge.dev)**
 
-[⭐ Star on GitHub](https://github.com/Hannah-goodridge/eventseats) • [🌐 Live Demo](https://eventseats.hannahgoodridge.dev) • [📖 Documentation](https://eventseats.hannahgoodridge.dev/docs)
+[⭐ Star on GitHub](https://github.com/Hannah-goodridge/eventseats) • [🌐 Live Demo](https://eventseats.hannahgoodridge.dev) • [📖 GitHub Docs](https://github.com/Hannah-goodridge/eventseats/tree/main/docs)
 
 </div>
 - 📧 **Email Notifications**: Automated booking confirmations
@@ -349,10 +359,10 @@ Special thanks to all **[contributors](https://github.com/Hannah-goodridge/event
 - **Domain**: £10-15/year
 - **Hosting**: Free (Vercel/Netlify)
 - **Database**: Free tier (Supabase/PlanetScale)
-- **Payment Processing**: 2.9% + 30p per transaction (Stripe)
+- **Payment Processing**: 2.9% + 30p per transaction (Stripe - work in progress)
 - **Email**: Free tier (most providers)
 
-**Total**: ~£1-2/month + payment processing fees
+**Total**: ~£1-2/month + payment processing fees (when Stripe is ready)
 
 ## Community
 

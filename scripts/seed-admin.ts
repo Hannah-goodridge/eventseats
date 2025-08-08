@@ -156,7 +156,7 @@ async function seedAdminUser() {
     console.log('1. Visit http://localhost:3000/admin/login')
     console.log('2. Sign in with the credentials above')
     console.log('3. Create your first show and start taking bookings!')
-    console.log('\n📚 Documentation: https://eventseats.hannahgoodridge.dev/docs')
+    console.log('\n📚 Documentation: https://github.com/Hannah-goodridge/eventseats/tree/main/docs')
 
   } catch (error) {
     console.error('❌ Error seeding database:', error)
