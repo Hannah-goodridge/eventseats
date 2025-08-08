@@ -68,7 +68,7 @@ const ShowCard: React.FC<ShowCardProps> = ({ show, onBookShow }) => {
         <div className="mb-4">
           <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">{show.title}</h3>
           {show.genre && (
-            <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded">
+            <span className="inline-block px-2 py-1 bg-emerald-100 text-emerald-800 text-xs font-medium rounded">
               {show.genre}
             </span>
           )}
@@ -122,7 +122,7 @@ const ShowCard: React.FC<ShowCardProps> = ({ show, onBookShow }) => {
           <div className="space-y-3">
             <h4 className="text-sm font-medium text-gray-900">Upcoming Performances</h4>
             {upcomingPerformances.slice(0, 3).map((performance) => (
-              <div key={performance.id} className="flex items-center justify-between p-3 bg-blue-50 rounded border border-blue-200">
+              <div key={performance.id} className="flex items-center justify-between p-3 bg-emerald-50 rounded border border-emerald-200">
                 <div>
                   <p className="font-medium text-gray-900">
                     {formatDate(performance.dateTime)}

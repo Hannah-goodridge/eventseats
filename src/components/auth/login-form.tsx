@@ -96,7 +96,7 @@ const LoginFormContent: React.FC<LoginFormProps> = ({ className }) => {
     }
   }
 
-  const inputClasses = 'w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+  const inputClasses = 'w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--highlight)] focus:border-[var(--highlight)]'
 
   // Check for error from URL params
 
@@ -178,7 +178,7 @@ const LoginFormContent: React.FC<LoginFormProps> = ({ className }) => {
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-700">
             Need help accessing your account?{' '}
-            <a href="mailto:admin@yourvenue.com" className="text-blue-600 hover:text-blue-500">
+            <a href="mailto:admin@yourvenue.com" className="text-highlight hover:text-lowlight">
               Contact support
             </a>
           </p>
@@ -186,12 +186,12 @@ const LoginFormContent: React.FC<LoginFormProps> = ({ className }) => {
       </div>
 
       {/* Demo Credentials */}
-      <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-        <h3 className="text-sm font-medium text-blue-900 mb-2">Demo Credentials</h3>
-        <div className="text-sm text-blue-700 space-y-1">
+      <div className="mt-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
+        <h3 className="text-sm font-medium text-emerald-900 mb-2">Demo Credentials</h3>
+        <div className="text-sm text-emerald-700 space-y-1">
           <p><strong>Email:</strong> admin@demo-theatre.com</p>
           <p><strong>Password:</strong> demo123</p>
-          <p className="text-xs text-blue-600 mt-2">
+          <p className="text-xs text-emerald-700 mt-2">
             Note: These credentials will work once you set up the database and create a demo user.
           </p>
         </div>

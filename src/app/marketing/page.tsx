@@ -42,7 +42,7 @@ export default function MarketingPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32">
                         <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
               Event Seat Booking
-              <span className="relative whitespace-nowrap text-blue-600">
+            <span className="relative whitespace-nowrap text-highlight">
                 <span className="relative"> Made Simple</span>
               </span>
             </h1>
@@ -55,7 +55,7 @@ export default function MarketingPage() {
                 <a href="#get-started">Start Free Today</a>
               </Button>
               <Button variant="outline" size="lg">
-                <a href="https://demo.eventseats.hannahgoodridge.dev">View Demo</a>
+                <a href="https://eventseats.hannahgoodridge.dev">View Demo</a>
               </Button>
             </div>
           </div>
@@ -65,7 +65,7 @@ export default function MarketingPage() {
         <section id="features" className="py-24 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-base font-semibold text-blue-600 tracking-wide uppercase">Features</h2>
+          <h2 className="text-base font-semibold text-highlight tracking-wide uppercase">Features</h2>
               <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                 Everything you need to sell tickets
               </p>
@@ -361,14 +361,14 @@ export default function MarketingPage() {
         </section>
 
         {/* CTA Section */}
-        <section id="get-started" className="bg-blue-600">
+        <section id="get-started" className="bg-highlight">
           <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-20 lg:px-8">
             <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
               <div>
               <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
                   Ready to sell tickets the smart way?
                 </h2>
-                <p className="mt-3 max-w-3xl text-lg text-blue-200">
+                <p className="mt-3 max-w-3xl text-lg text-emerald-50">
                   Join hundreds of theatre groups using SeatWise to manage their bookings.
                   Start with our free 30-day trial or download the open-source version.
                 </p>
@@ -376,7 +376,7 @@ export default function MarketingPage() {
               <Button variant="outline" size="lg" className="bg-white text-[#1b6452] hover:bg-gray-50">
                     <a href="https://github.com/Hannah-goodridge/eventseats">Get Started (GitHub)</a>
                   </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-[#034a43]">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-lowestlight">
                     <a href="https://github.com/Hannah-goodridge/eventseats">View on GitHub</a>
                   </Button>
                 </div>
@@ -418,7 +418,7 @@ export default function MarketingPage() {
                   Open-source event booking system designed for small venues with big dreams.
                 </p>
                 <p className="mt-4 text-gray-400 text-xs">
-                  Built with ❤️ by <a href="https://hannahgoodridge.dev" className="text-blue-400 hover:text-blue-300">Hannah Goodridge</a>
+                  Built with ❤️ by <a href="https://hannahgoodridge.dev" className="text-highlight hover:text-lowlight">Hannah Goodridge</a>
                 </p>
               </div>
               <div>
@@ -426,7 +426,7 @@ export default function MarketingPage() {
                 <ul className="mt-4 space-y-2">
                   <li><a href="#features" className="text-gray-300 hover:text-white text-sm">Features</a></li>
                   <li><a href="#pricing" className="text-gray-300 hover:text-white text-sm">Pricing <span className="text-xs">🚧</span></a></li>
-                  <li><a href="https://demo.eventseats.hannahgoodridge.dev" className="text-gray-300 hover:text-white text-sm">Demo</a></li>
+                  <li><a href="https://eventseats.hannahgoodridge.dev" className="text-gray-300 hover:text-white text-sm">Demo</a></li>
                 </ul>
               </div>
               <div>

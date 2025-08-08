@@ -72,8 +72,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const phoneValue = watch('phone')
   const smsOptInDisabled = !phoneValue || phoneValue.trim() === ''
 
-  const inputClasses = 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500'
-  const textareaClasses = 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 resize-vertical min-h-[100px]'
+  const inputClasses = 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-[var(--highlight)] focus:border-[var(--highlight)]'
+  const textareaClasses = 'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-[var(--highlight)] focus:border-[var(--highlight)] resize-vertical min-h-[100px]'
 
   if (selectedSeats.length === 0) {
     return (
@@ -86,7 +86,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   return (
     <div className={cn('max-w-2xl mx-auto', className)}>
       {/* Booking Summary */}
-      <div className="mb-8 p-6 bg-blue-50 rounded-lg">
+  <div className="mb-8 p-6 bg-emerald-50 rounded-lg">
         <h2 className="text-xl font-semibold mb-4 text-gray-800">Booking Summary</h2>
         <div className="space-y-2 text-gray-800">
           {selectedSeats.map((selection) => (
@@ -97,7 +97,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               <span className="font-medium">£{selection.price.toFixed(2)}</span>
             </div>
           ))}
-          <div className="pt-2 border-t border-blue-200">
+      <div className="pt-2 border-t border-emerald-200">
             <div className="flex justify-between items-center font-semibold">
               <span>Total:</span>
               <span>£{totalAmount.toFixed(2)}</span>
@@ -171,7 +171,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               {...register('emailOptIn')}
               type="checkbox"
               id="emailOptIn"
-              className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            className="mt-1 h-4 w-4 text-highlight focus:ring-[var(--highlight)] border-gray-300 rounded"
             />
             <label htmlFor="emailOptIn" className="text-sm text-gray-800">
               I would like to receive email updates about upcoming shows and special offers
@@ -184,7 +184,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               type="checkbox"
               id="smsOptIn"
               disabled={smsOptInDisabled}
-              className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded disabled:opacity-50"
+            className="mt-1 h-4 w-4 text-highlight focus:ring-[var(--highlight)] border-gray-300 rounded disabled:opacity-50"
             />
             <label htmlFor="smsOptIn" className={cn(
               'text-sm',

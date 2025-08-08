@@ -128,7 +128,7 @@ export default function WhatsOnPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-highlight"></div>
           </div>
         ) : error ? (
           <div className="bg-red-50 border border-red-200 rounded-md p-4">
@@ -181,8 +181,8 @@ export default function WhatsOnPage() {
             <div className="text-center">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Quick Links</h3>
               <div className="space-y-1">
-                <a href="/whats-on" className="block text-gray-600 text-sm hover:text-blue-600">What's On</a>
-                <a href="/admin" className="block text-gray-600 text-sm hover:text-blue-600">Admin</a>
+                <a href="/whats-on" className="block text-gray-600 text-sm hover:text-highlight">What's On</a>
+                <a href="/admin" className="block text-gray-600 text-sm hover:text-highlight">Admin</a>
                 {settings?.venue?.website && (
                   <a href={settings.venue.website} target="_blank" rel="noopener noreferrer" className="block text-gray-600 text-sm hover:text-blue-600">
                     Visit Website
@@ -197,7 +197,7 @@ export default function WhatsOnPage() {
                 &copy; {new Date().getFullYear()} {settings?.venue?.name || 'EventSeats'}. All rights reserved.
               </p>
               <p className="text-gray-500 text-xs mt-1">
-                Powered by <a href="https://hannahgoodridge.dev" className="text-blue-600 hover:text-blue-800">Hannah Goodridge</a>
+                Powered by <a href="https://hannahgoodridge.dev" className="text-highlight hover:text-lowlight">Hannah Goodridge</a>
               </p>
             </div>
           </div>

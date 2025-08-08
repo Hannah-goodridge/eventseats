@@ -156,7 +156,7 @@ export default function AdminPage() {
   if (status === 'loading' || isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-highlight"></div>
       </div>
     )
   }
@@ -174,7 +174,7 @@ export default function AdminPage() {
             <div className="flex items-center">
               <h1 className="text-xl font-semibold text-gray-900">Admin Dashboard</h1>
               {session?.user?.organization && (
-                <span className="ml-4 px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                <span className="ml-4 px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">
                   {session.user.organization.name}
                 </span>
               )}
@@ -198,7 +198,7 @@ export default function AdminPage() {
       <nav className="bg-gray-100 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex space-x-8">
-            <a href="/admin" className="py-3 px-1 border-b-2 border-blue-500 text-sm font-medium text-blue-600">
+            <a href="/admin" className="py-3 px-1 border-b-2 border-highlight text-sm font-medium text-highlight">
               Dashboard
             </a>
             <a href="/admin/shows" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700">
