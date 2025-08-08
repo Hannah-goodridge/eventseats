@@ -84,6 +84,8 @@ export interface Booking {
   specialRequests?: string;
   checkedInAt?: Date;
   qrCodeData?: string;
+  createdAt: string;
+  updatedAt: string;
   bookingItems: BookingItem[];
 }
 

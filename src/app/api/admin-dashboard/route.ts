@@ -101,7 +101,7 @@ export async function GET(_request: NextRequest) {
         },
         // Add booking data for this performance
         bookings: bookings?.filter(booking =>
-          booking.performances?.id === perf.id
+          booking.performances && (booking.performances as any).id === perf.id
         ).map(booking => ({
           id: booking.id,
           totalAmount: booking.totalAmount,
@@ -126,11 +126,11 @@ export async function GET(_request: NextRequest) {
       status: booking.status,
       createdAt: booking.createdAt,
       customer: booking.customers ? {
-        id: booking.customers.id,
-        firstName: booking.customers.firstName,
-        lastName: booking.customers.lastName,
-        email: booking.customers.email,
-        phone: booking.customers.phone
+        id: (booking.customers as any).id,
+        firstName: (booking.customers as any).firstName,
+        lastName: (booking.customers as any).lastName,
+        email: (booking.customers as any).email,
+        phone: (booking.customers as any).phone
       } : null,
       show: booking.performances?.shows ? {
         id: booking.performances.shows.id,
