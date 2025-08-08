@@ -278,7 +278,9 @@ export async function GET(request: NextRequest) {
           firstName,
           lastName,
           email,
-          phone
+          phone,
+          emailOptIn,
+          smsOptIn
         ),
         performances (
           id,
@@ -330,11 +332,28 @@ export async function GET(request: NextRequest) {
       throw new Error(`Database error: ${error.message}`)
     }
 
+    // Normalize shape: expose `customer` (singular) for consumers
+    const normalized = (bookings || []).map((b: any) => {
+      const customer = b.customers
+        ? {
+            id: b.customers.id,
+            firstName: b.customers.firstName,
+            lastName: b.customers.lastName,
+            email: b.customers.email,
+            phone: b.customers.phone,
+          }
+        : null
+      return {
+        ...b,
+        customer,
+      }
+    })
+
     return NextResponse.json({
       success: true,
-      data: bookings || [],
+      data: normalized,
       meta: {
-        total: bookings?.length || 0
+        total: normalized.length
       }
     })
 

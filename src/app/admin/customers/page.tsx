@@ -29,68 +29,26 @@ export default function AdminCustomersPage() {
       return
     }
 
-    loadCustomers()
-  }, [status, router, currentPage, filters])
+    // Initial load only; subsequent loads triggered by Search/Clear/Page change
+
+  }, [status, router])
 
   const loadCustomers = async () => {
     setIsLoading(true)
     try {
-      // For now, we'll get customers from bookings API since there's no dedicated customers API
-      const params = new URLSearchParams({
-        page: currentPage.toString(),
-        limit: '50'
-      })
+      const params = new URLSearchParams()
+      params.set('page', currentPage.toString())
+      params.set('limit', '50')
+      if (filters.search) params.set('search', filters.search)
+      if (filters.emailOptIn) params.set('emailOptIn', filters.emailOptIn)
+      if (filters.smsOptIn) params.set('smsOptIn', filters.smsOptIn)
 
-      const response = await fetch(`/api/bookings?${params}`)
+      const response = await fetch(`/api/customers?${params.toString()}`)
       const data = await response.json()
 
       if (data.success) {
-        // Extract unique customers from bookings
-        const bookings = data.data
-        const uniqueCustomers = new Map()
-
-        bookings.forEach((booking: any) => {
-          if (booking.customer && !uniqueCustomers.has(booking.customer.id)) {
-            // Count bookings for this customer
-            const customerBookings = bookings.filter((b: any) =>
-              b.customer?.id === booking.customer.id
-            )
-
-            uniqueCustomers.set(booking.customer.id, {
-              ...booking.customer,
-              bookingCount: customerBookings.length,
-              totalSpent: customerBookings.reduce((sum: number, b: any) => sum + b.totalAmount, 0),
-              lastBooking: Math.max(...customerBookings.map((b: any) => new Date(b.createdAt).getTime()))
-            })
-          }
-        })
-
-        let customerList = Array.from(uniqueCustomers.values())
-
-        // Apply filters
-        if (filters.search) {
-          const search = filters.search.toLowerCase()
-          customerList = customerList.filter((customer: any) =>
-            customer.firstName?.toLowerCase().includes(search) ||
-            customer.lastName?.toLowerCase().includes(search) ||
-            customer.email?.toLowerCase().includes(search)
-          )
-        }
-
-        if (filters.emailOptIn === 'true') {
-          customerList = customerList.filter((customer: any) => customer.emailOptIn)
-        } else if (filters.emailOptIn === 'false') {
-          customerList = customerList.filter((customer: any) => !customer.emailOptIn)
-        }
-
-        if (filters.smsOptIn === 'true') {
-          customerList = customerList.filter((customer: any) => customer.smsOptIn)
-        } else if (filters.smsOptIn === 'false') {
-          customerList = customerList.filter((customer: any) => !customer.smsOptIn)
-        }
-
-        setCustomers(customerList)
-        setTotalPages(1) // Since we're doing client-side filtering for now
+        setCustomers(data.data)
+        setTotalPages(data.meta?.totalPages || 1)
       } else {
         console.error('Failed to load customers:', data.error)
       }
@@ -220,7 +178,7 @@ export default function AdminCustomersPage() {
             <div>
               <label className="block text-sm font-medium text-gray-800 mb-1">Actions</label>
               <div className="flex gap-2">
-                <Button variant="primary" size="sm" onClick={loadCustomers}>
+                <Button variant="primary" size="sm" onClick={() => { setCurrentPage(1); loadCustomers() }}>
                   Search
                 </Button>
                 <Button
@@ -229,6 +187,7 @@ export default function AdminCustomersPage() {
                   onClick={() => {
                     setFilters({})
                     setCurrentPage(1)
+                    loadCustomers()
                   }}
                 >
                   Clear
