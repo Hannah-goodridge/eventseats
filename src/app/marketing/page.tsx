@@ -55,7 +55,7 @@ export default function MarketingPage() {
                 <a href="#get-started">Start Free Today</a>
               </Button>
               <Button variant="outline" size="lg">
-                <a href="https://eventseats.hannahgoodridge.dev">View Demo</a>
+                <a href="https://eventseats.hannahgoodridge.dev/whats-on">View Demo</a>
               </Button>
             </div>
           </div>
