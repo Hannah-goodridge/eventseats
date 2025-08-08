@@ -111,41 +111,41 @@ export async function GET(
       createdAt: booking.createdAt,
       updatedAt: booking.updatedAt,
       customer: booking.customers ? {
-        id: booking.customers.id,
-        firstName: booking.customers.firstName,
-        lastName: booking.customers.lastName,
-        email: booking.customers.email,
-        phone: booking.customers.phone,
-        emailOptIn: booking.customers.emailOptIn,
-        smsOptIn: booking.customers.smsOptIn,
-        address: booking.customers.address,
-        city: booking.customers.city,
-        postcode: booking.customers.postcode,
-        country: booking.customers.country
+        id: (booking.customers as any).id,
+        firstName: (booking.customers as any).firstName,
+        lastName: (booking.customers as any).lastName,
+        email: (booking.customers as any).email,
+        phone: (booking.customers as any).phone,
+        emailOptIn: (booking.customers as any).emailOptIn,
+        smsOptIn: (booking.customers as any).smsOptIn,
+        address: (booking.customers as any).address,
+        city: (booking.customers as any).city,
+        postcode: (booking.customers as any).postcode,
+        country: (booking.customers as any).country
       } : null,
-      show: booking.performances?.shows ? {
-        id: booking.performances.shows.id,
-        title: booking.performances.shows.title,
-        description: booking.performances.shows.description,
-        genre: booking.performances.shows.genre,
-        duration: booking.performances.shows.duration,
-        ageRating: booking.performances.shows.ageRating,
-        adultPrice: booking.performances.shows.adultPrice,
-        childPrice: booking.performances.shows.childPrice,
-        concessionPrice: booking.performances.shows.concessionPrice,
-        venue: booking.performances.shows.venues ? {
-          id: booking.performances.shows.venues.id,
-          name: booking.performances.shows.venues.name,
-          address: booking.performances.shows.venues.address,
-          phone: booking.performances.shows.venues.phone,
-          email: booking.performances.shows.venues.email
+      show: (booking.performances as any)?.shows ? {
+        id: (booking.performances as any).shows.id,
+        title: (booking.performances as any).shows.title,
+        description: (booking.performances as any).shows.description,
+        genre: (booking.performances as any).shows.genre,
+        duration: (booking.performances as any).shows.duration,
+        ageRating: (booking.performances as any).shows.ageRating,
+        adultPrice: (booking.performances as any).shows.adultPrice,
+        childPrice: (booking.performances as any).shows.childPrice,
+        concessionPrice: (booking.performances as any).shows.concessionPrice,
+        venue: (booking.performances as any).shows.venues ? {
+          id: (booking.performances as any).shows.venues.id,
+          name: (booking.performances as any).shows.venues.name,
+          address: (booking.performances as any).shows.venues.address,
+          phone: (booking.performances as any).shows.venues.phone,
+          email: (booking.performances as any).shows.venues.email
         } : null
       } : null,
       performance: booking.performances ? {
-        id: booking.performances.id,
-        dateTime: booking.performances.dateTime,
-        isMatinee: booking.performances.isMatinee,
-        notes: booking.performances.notes
+        id: (booking.performances as any).id,
+        dateTime: (booking.performances as any).dateTime,
+        isMatinee: (booking.performances as any).isMatinee,
+        notes: (booking.performances as any).notes
       } : null,
       bookingItems: booking.booking_items ? booking.booking_items.map((item: any) => ({
         id: item.id,

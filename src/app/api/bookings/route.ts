@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
       }, { status: 404 })
     }
 
-    console.log('✅ Found performance:', performance.shows.title)
+    console.log('✅ Found performance:', (performance.shows as any).title)
 
     // Check for double booking - verify seats are still available
     const seatIds = seats.map(seat => seat.seatId)
