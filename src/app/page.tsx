@@ -153,7 +153,8 @@ export default function Home() {
       <footer className="bg-white border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-gray-600">
-            <p>&copy; 2024 {settings?.venue?.name || 'Demo Theatre'}. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} {settings?.venue?.name || 'eventseats'}. All rights reserved.</p>
+            <p>Powered by <a href="https://hannahgoodridge.dev" className="text-blue-600 hover:text-blue-800">Hannah Goodridge</a></p>
             <p className="mt-2 text-sm">
               Contact information and additional links can be configured in{' '}
               <a href="/admin/settings" className="text-blue-600 hover:text-blue-800">
