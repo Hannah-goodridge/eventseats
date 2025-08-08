@@ -19,11 +19,11 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@hookform/resolvers": "^5.2.1",
     "@mui/icons-material": "^7.3.1",
-
     "@reduxjs/toolkit": "^2.8.2",
     "@stripe/stripe-js": "^7.8.0",
     "@supabase/supabase-js": "^2.54.0",
     "@types/bcryptjs": "^3.0.0",
+    "@vercel/analytics": "^1.5.0",
     "bcryptjs": "^3.0.2",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
@@ -52,7 +52,6 @@
     "@types/uuid": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
-
     "tailwindcss": "^4",
     "tsx": "^4.20.3",
     "typescript": "^5"
