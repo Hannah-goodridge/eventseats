@@ -164,7 +164,7 @@ http {
 
 ```bash
 # Clone your repository
-git clone https://github.com/yourusername/show-bookings-system.git
+git clone https://github.com/hannah-goodridge/eventseats.git
 cd show-bookings-system
 
 # Create environment file
@@ -217,7 +217,7 @@ GRANT ALL PRIVILEGES ON DATABASE show_bookings TO booking_user;
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/show-bookings-system.git
+git clone https://github.com/hannah-goodridge/eventseats.git
 cd show-bookings-system
 
 # Install dependencies

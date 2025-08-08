@@ -41,18 +41,16 @@ export default function LoginPage() {
         {/* Footer */}
         <div className="mt-12 text-center">
           <p className="text-sm text-gray-500">
-            © 2024 Show Bookings System. Open source software for drama groups.
+            © {new Date().getFullYear()} Event Seats. Open source software for drama groups.
           </p>
           <div className="mt-2 flex justify-center space-x-4 text-sm">
             <a href="/" className="text-blue-600 hover:text-blue-500">
               Public Site
             </a>
             <span className="text-gray-300">•</span>
-            <a href="/admin/help" className="text-blue-600 hover:text-blue-500">
-              Help
-            </a>
+
             <span className="text-gray-300">•</span>
-            <a href="https://github.com/yourusername/show-bookings-system" className="text-blue-600 hover:text-blue-500">
+            <a href="https://github.com/hannah-goodridge/eventseats" className="text-blue-600 hover:text-blue-500">
               GitHub
             </a>
           </div>

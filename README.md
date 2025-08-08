@@ -281,7 +281,7 @@ Special thanks to all **[contributors](https://github.com/Hannah-goodridge/event
 
 ### One-Click Deploy Options
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/show-bookings-system)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/hannah-goodridge/eventseats)
 
 [![Deploy to Railway](https://railway.app/button.svg)](https://railway.app/template/xxx)
 
@@ -293,7 +293,7 @@ Special thanks to all **[contributors](https://github.com/Hannah-goodridge/event
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/show-bookings-system.git
+   git clone https://github.com/hannah-goodridge/eventseats.git
    cd show-bookings-system
    ```
 
@@ -356,8 +356,8 @@ Special thanks to all **[contributors](https://github.com/Hannah-goodridge/event
 
 ## Community
 
-- 🐛 [Report Issues](https://github.com/yourusername/show-bookings-system/issues)
-- 💬 [Discussions](https://github.com/yourusername/show-bookings-system/discussions)
+- 🐛 [Report Issues](https://github.com/hannah-goodridge/eventseats/issues)
+- 💬 [Discussions](https://github.com/hannah-goodridge/eventseats/discussions)
 - 📖 [Documentation](./docs/)
 - ❤️ [Contributing](./CONTRIBUTING.md)
 
