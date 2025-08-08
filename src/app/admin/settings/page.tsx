@@ -209,9 +209,9 @@ export default function AdminSettingsPage() {
 
   if (status === 'loading' || isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-highlight mx-auto"></div>
           <p className="mt-4 text-gray-700">Loading settings...</p>
         </div>
       </div>
@@ -263,7 +263,7 @@ export default function AdminSettingsPage() {
             <a href="/admin/customers" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:text-gray-800">
               Customers
             </a>
-            <a href="/admin/settings" className="py-3 px-1 border-b-2 border-blue-500 text-sm font-medium text-blue-600">
+            <a href="/admin/settings" className="py-3 px-1 border-b-2 border-highlight text-sm font-medium text-highlight">
               Settings
             </a>
           </div>
@@ -282,7 +282,7 @@ export default function AdminSettingsPage() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`group rounded-md px-3 py-2 flex items-center text-sm font-medium w-full text-left ${
                     activeTab === tab.id
-                      ? 'bg-blue-50 text-blue-700 hover:bg-blue-50'
+                      ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-50'
                       : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
                   }`}
                 >
@@ -313,7 +313,7 @@ export default function AdminSettingsPage() {
                       id="venueName"
                       value={venueSettings.name}
                       onChange={(e) => setVenueSettings(prev => ({ ...prev, name: e.target.value }))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-800 focus:ring-2 focus:ring-[var(--highlight)] focus:border-[var(--highlight)]"
                     />
                   </div>
 

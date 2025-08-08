@@ -71,7 +71,7 @@ export default function AdminCustomersPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-highlight mx-auto"></div>
           <p className="mt-4 text-gray-700">Loading customers...</p>
         </div>
       </div>
@@ -113,7 +113,7 @@ export default function AdminCustomersPage() {
             <a href="/admin/bookings" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:text-gray-800">
               Bookings
             </a>
-            <a href="/admin/customers" className="py-3 px-1 border-b-2 border-blue-500 text-sm font-medium text-blue-600">
+            <a href="/admin/customers" className="py-3 px-1 border-b-2 border-highlight text-sm font-medium text-highlight">
               Customers
             </a>
             <a href="/admin/settings" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:text-gray-800">
@@ -139,7 +139,7 @@ export default function AdminCustomersPage() {
                 value={filters.search || ''}
                 onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
                 placeholder="Name or email"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-[var(--highlight)] focus:border-[var(--highlight)]"
               />
             </div>
 
@@ -151,7 +151,7 @@ export default function AdminCustomersPage() {
                 id="emailOptIn"
                 value={filters.emailOptIn || ''}
                 onChange={(e) => setFilters(prev => ({ ...prev, emailOptIn: e.target.value }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-800 focus:ring-2 focus:ring-[var(--highlight)] focus:border-[var(--highlight)]"
               >
                 <option value="">All</option>
                 <option value="true">Opted In</option>
@@ -167,7 +167,7 @@ export default function AdminCustomersPage() {
                 id="smsOptIn"
                 value={filters.smsOptIn || ''}
                 onChange={(e) => setFilters(prev => ({ ...prev, smsOptIn: e.target.value }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-800 focus:ring-2 focus:ring-[var(--highlight)] focus:border-[var(--highlight)]"
               >
                 <option value="">All</option>
                 <option value="true">Opted In</option>

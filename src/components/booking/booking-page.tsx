@@ -147,7 +147,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
         <div className={cn(
           'flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium',
           currentStep === BookingStep.SEAT_SELECTION
-            ? 'bg-blue-600 text-white'
+            ? 'bg-highlight text-white'
             : selectedSeats.length > 0
             ? 'bg-green-600 text-white'
             : 'bg-gray-300 text-gray-800'
@@ -156,7 +156,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
         </div>
         <span className={cn(
           'text-sm font-medium',
-          currentStep === BookingStep.SEAT_SELECTION ? 'text-blue-600' : 'text-gray-700'
+          currentStep === BookingStep.SEAT_SELECTION ? 'text-highlight' : 'text-gray-700'
         )}>
           Select Seats
         </span>
@@ -166,7 +166,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
         <div className={cn(
           'flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium',
           currentStep === BookingStep.CUSTOMER_INFO
-            ? 'bg-blue-600 text-white'
+            ? 'bg-highlight text-white'
             : currentStep === BookingStep.CONFIRMATION
             ? 'bg-green-600 text-white'
             : 'bg-gray-300 text-gray-800'
@@ -175,7 +175,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
         </div>
         <span className={cn(
           'text-sm font-medium',
-          currentStep === BookingStep.CUSTOMER_INFO ? 'text-blue-600' : 'text-gray-700'
+          currentStep === BookingStep.CUSTOMER_INFO ? 'text-highlight' : 'text-gray-700'
         )}>
           Customer Info
         </span>
@@ -254,7 +254,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
               </span>
             )}
             {show.genre && (
-              <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded">
+            <span className="inline-block px-2 py-1 bg-emerald-100 text-emerald-800 text-xs font-medium rounded">
                 {show.genre}
               </span>
             )}
@@ -449,7 +449,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                   <div className="grid grid-cols-2 gap-2">
                     {selectedSeats.map((selection, index) => (
                       <div key={index} className="flex items-center gap-2 p-2 bg-gray-50 rounded">
-                        <div className="w-6 h-6 bg-blue-100 border-2 border-blue-300 rounded-t flex items-center justify-center text-xs font-medium text-blue-800">
+                        <div className="w-6 h-6 bg-emerald-100 border-2 border-emerald-300 rounded-t flex items-center justify-center text-xs font-medium text-emerald-800">
                           {selection.seat.number}
                         </div>
                         <div className="text-sm">
@@ -464,12 +464,12 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                   </div>
                 </div>
 
-                <div className="bg-blue-50 rounded-lg p-4">
+               <div className="bg-emerald-50 rounded-lg p-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-lg font-semibold text-blue-900">Total Amount</span>
-                    <span className="text-2xl font-bold text-blue-900">£{bookingConfirmation.totalAmount.toFixed(2)}</span>
+                    <span className="text-lg font-semibold text-emerald-900">Total Amount</span>
+                    <span className="text-2xl font-bold text-emerald-900">£{bookingConfirmation.totalAmount.toFixed(2)}</span>
                   </div>
-                  <p className="text-xs text-blue-700 mt-1">Payment confirmed</p>
+                  <p className="text-xs text-emerald-700 mt-1">Payment confirmed</p>
                 </div>
               </div>
             </div>
