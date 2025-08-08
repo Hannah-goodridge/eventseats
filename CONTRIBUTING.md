@@ -26,7 +26,7 @@ Thank you for your interest in contributing to EventSeats! This document provide
 
 3. **Add upstream remote**:
    ```bash
-   git remote add upstream https://github.com/hannahgoodridge/show-bookings-system.git
+   git remote add upstream https://github.com/Hannah-goodridge/eventseats.git
    ```
 
 4. **Install dependencies**:
@@ -367,4 +367,4 @@ Every contribution, no matter how small, makes EventSeats better for everyone. W
 
 ---
 
-**Questions?** Feel free to ask in [GitHub Discussions](https://github.com/hannahgoodridge/show-bookings-system/discussions) or email [hello@hannahgoodridge.dev](mailto:hello@hannahgoodridge.dev).
+**Questions?** Feel free to ask in [GitHub Discussions](https://github.com/Hannah-goodridge/eventseats/discussions) or email [hello@hannahgoodridge.dev](mailto:hello@hannahgoodridge.dev).

@@ -19,13 +19,13 @@ Built for organizations with small budgets but big dreams. Professional booking 
 
 ### Option 1: One-Click Deploy (Recommended for Testing)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/hannahgoodridge/show-bookings-system)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Hannah-goodridge/eventseats)
 
 ### Option 2: Local Development
 
 ```bash
 # Clone the repository
-git clone https://github.com/hannahgoodridge/show-bookings-system.git
+git clone https://github.com/Hannah-goodridge/eventseats.git
 cd show-bookings-system
 
 # Install dependencies
@@ -66,12 +66,12 @@ Visit [http://localhost:3000](http://localhost:3000) to see your booking system!
 
 - **Node.js** 18+ ([Download here](https://nodejs.org/))
 - **PostgreSQL** or **Supabase** account ([Get free account](https://supabase.com/))
-- **Stripe** account for payments ([Get account](https://stripe.com/))
+- **Stripe** account for payments - **Optional** ([Get account](https://stripe.com/))
 
 ### Step 1: Clone and Install
 
 ```bash
-git clone https://github.com/hannahgoodridge/show-bookings-system.git
+git clone https://github.com/Hannah-goodridge/eventseats.git
 cd show-bookings-system
 npm install
 ```
@@ -199,7 +199,7 @@ git clone https://github.com/YOUR_USERNAME/show-bookings-system.git
 cd show-bookings-system
 
 # Add upstream remote
-git remote add upstream https://github.com/hannahgoodridge/show-bookings-system.git
+git remote add upstream https://github.com/Hannah-goodridge/eventseats.git
 
 # Install dependencies
 npm install
@@ -228,8 +228,8 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)** for detailed guidelines.
 
 ### Get Help
 - 📚 **[Documentation](https://eventseats.hannahgoodridge.dev/docs)**
-- 💬 **[GitHub Discussions](https://github.com/hannahgoodridge/show-bookings-system/discussions)**
-- 🐛 **[Issue Tracker](https://github.com/hannahgoodridge/show-bookings-system/issues)**
+- 💬 **[GitHub Discussions](https://github.com/Hannah-goodridge/eventseats/discussions)**
+- 🐛 **[Issue Tracker](https://github.com/Hannah-goodridge/eventseats/issues)**
 - 📧 **Email:** [hello@hannahgoodridge.dev](mailto:hello@hannahgoodridge.dev)
 
 ### Show Your Support
@@ -260,7 +260,7 @@ Built with amazing open-source tools:
 - **[Tailwind CSS](https://tailwindcss.com/)** - Styling
 - **[TypeScript](https://www.typescriptlang.org/)** - Type safety
 
-Special thanks to all **[contributors](https://github.com/hannahgoodridge/show-bookings-system/graphs/contributors)** who make EventSeats better! 🎭
+Special thanks to all **[contributors](https://github.com/Hannah-goodridge/eventseats/graphs/contributors)** who make EventSeats better! 🎭
 
 ---
 
@@ -268,7 +268,7 @@ Special thanks to all **[contributors](https://github.com/hannahgoodridge/show-b
 
 **Made with ❤️ by [Hannah Goodridge](https://hannahgoodridge.dev)**
 
-[⭐ Star on GitHub](https://github.com/hannahgoodridge/show-bookings-system) • [🌐 Live Demo](https://demo.eventseats.hannahgoodridge.dev) • [📖 Documentation](https://eventseats.hannahgoodridge.dev/docs)
+[⭐ Star on GitHub](https://github.com/Hannah-goodridge/eventseats) • [🌐 Live Demo](https://demo.eventseats.hannahgoodridge.dev) • [📖 Documentation](https://eventseats.hannahgoodridge.dev/docs)
 
 </div>
 - 📧 **Email Notifications**: Automated booking confirmations

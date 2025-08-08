@@ -15,7 +15,7 @@ Before you start, make sure you have:
 
 ```bash
 # Clone the repository
-git clone https://github.com/hannahgoodridge/show-bookings-system.git
+git clone https://github.com/Hannah-goodridge/eventseats.git
 cd show-bookings-system
 
 # Run the setup script
@@ -182,8 +182,8 @@ npm install
 ### Get Support
 
 - 📚 **[Full Documentation](https://eventseats.hannahgoodridge.dev/docs)**
-- 💬 **[GitHub Discussions](https://github.com/hannahgoodridge/show-bookings-system/discussions)**
-- 🐛 **[Report Issues](https://github.com/hannahgoodridge/show-bookings-system/issues)**
+- 💬 **[GitHub Discussions](https://github.com/Hannah-goodridge/eventseats/discussions)**
+- 🐛 **[Report Issues](https://github.com/Hannah-goodridge/eventseats/issues)**
 - 📧 **Email:** [hello@hannahgoodridge.dev](mailto:hello@hannahgoodridge.dev)
 
 ### Contributing

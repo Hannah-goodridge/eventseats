@@ -19,9 +19,9 @@ export default function MarketingPage() {
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#features" className="text-gray-500 hover:text-gray-900">Features</a>
-              <a href="#pricing" className="text-gray-500 hover:text-gray-900">Pricing</a>
+              <a href="#pricing" className="text-gray-500 hover:text-gray-900">Pricing <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full ml-1">Soon</span></a>
               <a href="#docs" className="text-gray-500 hover:text-gray-900">Documentation</a>
-              <a href="https://github.com/hannahgoodridge/show-bookings-system" className="text-gray-500 hover:text-gray-900">GitHub</a>
+              <a href="https://github.com/Hannah-goodridge/eventseats" className="text-gray-500 hover:text-gray-900">GitHub</a>
             </nav>
             <div className="flex items-center space-x-4">
               <Link href="/admin/login">
@@ -216,7 +216,7 @@ export default function MarketingPage() {
                     <span className="text-base font-medium text-gray-500">/month</span>
                   </p>
                   <Button variant="outline" className="mt-8 w-full">
-                    <a href="https://github.com/hannahgoodridge/show-bookings-system">Download on GitHub</a>
+                    <a href="https://github.com/Hannah-goodridge/eventseats">Download on GitHub</a>
                   </Button>
                 </div>
                 <div className="pt-6 pb-8 px-6">
@@ -260,12 +260,16 @@ export default function MarketingPage() {
                 <div className="p-6">
                   <h2 className="text-lg leading-6 font-medium text-gray-900">Hosted Starter</h2>
                   <p className="mt-4 text-sm text-gray-500">Perfect for small theatre groups</p>
+                  <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                    <p className="text-sm text-yellow-800 font-medium">🚧 Coming Soon</p>
+                    <p className="text-xs text-yellow-700 mt-1">Hosted option launching early 2025</p>
+                  </div>
                   <p className="mt-8">
-                    <span className="text-4xl font-extrabold text-gray-900">£29</span>
-                    <span className="text-base font-medium text-gray-500">/month</span>
+                    <span className="text-4xl font-extrabold text-gray-400">£29</span>
+                    <span className="text-base font-medium text-gray-400">/month</span>
                   </p>
-                  <Button variant="primary" className="mt-8 w-full">
-                    <a href="#get-started">Start Free Trial</a>
+                  <Button variant="outline" className="mt-8 w-full" disabled>
+                    Coming Soon
                   </Button>
                 </div>
                 <div className="pt-6 pb-8 px-6">
@@ -308,8 +312,12 @@ export default function MarketingPage() {
               {/* Enterprise Tier */}
               <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200">
                 <div className="p-6">
-                  <h2 className="text-lg leading-6 font-medium text-gray-900">Custom</h2>
+                  <h2 className="text-lg leading-6 font-medium text-gray-900">Custom Enterprise</h2>
                   <p className="mt-4 text-sm text-gray-500">For larger venues and organizations</p>
+                  <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                    <p className="text-sm text-blue-800 font-medium">💬 Available Now</p>
+                    <p className="text-xs text-blue-700 mt-1">Custom solutions & consultation</p>
+                  </div>
                   <p className="mt-8">
                     <span className="text-4xl font-extrabold text-gray-900">Custom</span>
                   </p>
@@ -365,10 +373,10 @@ export default function MarketingPage() {
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <Button variant="outline" size="lg" className="bg-white text-blue-600 hover:bg-gray-50">
-                    <a href="#pricing">Start Free Trial</a>
+                    <a href="https://github.com/Hannah-goodridge/eventseats">Get Started (GitHub)</a>
                   </Button>
                   <Button variant="outline" size="lg" className="border-white text-white hover:bg-blue-700">
-                    <a href="https://github.com/hannahgoodridge/show-bookings-system">View on GitHub</a>
+                    <a href="https://github.com/Hannah-goodridge/eventseats">View on GitHub</a>
                   </Button>
                 </div>
               </div>
@@ -416,7 +424,7 @@ export default function MarketingPage() {
                 <h4 className="text-white font-medium">Product</h4>
                 <ul className="mt-4 space-y-2">
                   <li><a href="#features" className="text-gray-300 hover:text-white text-sm">Features</a></li>
-                  <li><a href="#pricing" className="text-gray-300 hover:text-white text-sm">Pricing</a></li>
+                  <li><a href="#pricing" className="text-gray-300 hover:text-white text-sm">Pricing <span className="text-xs">🚧</span></a></li>
                   <li><a href="https://demo.eventseats.hannahgoodridge.dev" className="text-gray-300 hover:text-white text-sm">Demo</a></li>
                 </ul>
               </div>
