@@ -13,10 +13,14 @@ const bookingSchema = z.object({
   lastName: z.string().min(1, 'Last name is required'),
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().optional(),
-  emailOptIn: z.boolean().default(false),
-  smsOptIn: z.boolean().default(false),
+  emailOptIn: z.boolean(),
+  smsOptIn: z.boolean(),
   accessibilityRequirements: z.string().optional(),
   specialRequests: z.string().optional(),
+  address: z.string().optional(),
+  city: z.string().optional(),
+  postcode: z.string().optional(),
+  country: z.string().optional()
 })
 
 interface BookingFormProps {
@@ -58,7 +62,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     formState: { errors },
     watch
   } = useForm<BookingFormData>({
-    resolver: zodResolver(bookingSchema),
+    resolver: zodResolver(bookingSchema as any),
     defaultValues: {
       emailOptIn: false,
       smsOptIn: false

@@ -73,8 +73,10 @@ export default function BookingRoute() {
           organizationId: '1',
           venueId: '1',
           seatingLayoutId: '1',
+          createdAt: new Date(),
+          updatedAt: new Date(),
 
-          performances: foundShow.performances.map(p => ({
+          performances: foundShow.performances.map((p: any) => ({
             id: p.id,
             dateTime: new Date(p.dateTime),
             isMatinee: p.isMatinee,
@@ -107,6 +109,8 @@ export default function BookingRoute() {
             columns: 10,
             layoutData: {},
             venueId: seatingData.data.layout.venueId,
+            organizationId: seatingData.data.layout.organizationId,
+            seatingLayoutId: seatingData.data.layout.id,
             createdAt: new Date(),
             updatedAt: new Date(),
             seats: seatingData.data.seats.map((seat: any) => ({

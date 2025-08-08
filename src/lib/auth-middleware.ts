@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getToken } from 'next-auth/jwt'
 import { UserRole } from '../types'
-import { ApiError } from './api-utils'
 
 export interface AuthenticatedRequest extends NextRequest {
   user: {
@@ -28,11 +27,11 @@ export async function requireAuth(
   })
 
   if (!token) {
-    throw new ApiError('Authentication required', 401)
+    throw new Error('Authentication required')
   }
 
   if (!requiredRoles.includes(token.role as UserRole)) {
-    throw new ApiError('Insufficient permissions', 403)
+    throw new Error('Insufficient permissions')
   }
 
   // Add user to request
@@ -66,10 +65,10 @@ export function withAuth<T extends any[]>(
       const authenticatedRequest = await requireAuth(request, requiredRoles)
       return await handler(authenticatedRequest, ...args)
     } catch (error) {
-      if (error instanceof ApiError) {
+      if (error instanceof Error) {
         return NextResponse.json(
           { error: error.message },
-          { status: error.statusCode }
+          { status: 401 }
         )
       }
       return NextResponse.json(

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, Suspense } from 'react'
 import { signIn, getSession } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -20,7 +20,34 @@ interface LoginFormProps {
   className?: string
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ className }) => {
+const DisplayError = ({ error }: { error: string | null }) => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ErrorContent error={error} />
+    </Suspense>
+  )
+}
+
+const ErrorContent = ({ error }: { error: string | null }) => {
+  const searchParams = useSearchParams()
+  const urlError = searchParams.get('error')
+  const displayError = error || (urlError ? 'Authentication failed' : null)
+
+  if (!displayError) return null
+
+  return (
+    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+      <div className="flex items-center">
+        <svg className="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+        </svg>
+        <span className="text-red-700 text-sm">{displayError}</span>
+      </div>
+    </div>
+  )
+}
+
+const LoginFormContent: React.FC<LoginFormProps> = ({ className }) => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
@@ -72,8 +99,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ className }) => {
   const inputClasses = 'w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
 
   // Check for error from URL params
-  const urlError = searchParams.get('error')
-  const displayError = error || (urlError ? 'Authentication failed' : null)
+
 
   return (
     <div className={cn('w-full max-w-md mx-auto', className)}>
@@ -85,16 +111,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ className }) => {
         </div>
 
         {/* Error Alert */}
-        {displayError && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-            <div className="flex items-center">
-              <svg className="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-              </svg>
-              <span className="text-red-700 text-sm">{displayError}</span>
-            </div>
-          </div>
-        )}
+        <DisplayError error={error} />
 
         {/* Login Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -180,5 +197,14 @@ export const LoginForm: React.FC<LoginFormProps> = ({ className }) => {
         </div>
       </div>
     </div>
+
+  )
+}
+
+export const LoginForm: React.FC<LoginFormProps> = ({ className }) => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginFormContent className={className} />
+    </Suspense>
   )
 }

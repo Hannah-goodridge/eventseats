@@ -9,6 +9,8 @@ export interface Seat {
   isWheelchairSpace: boolean;
   notes?: string;
   seatingLayoutId: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface SeatingLayout {
@@ -19,6 +21,11 @@ export interface SeatingLayout {
   columns: number;
   layoutData: Record<string, unknown>; // JSON data for the layout
   seats: Seat[];
+  organizationId: string;
+  venueId: string;
+  seatingLayoutId: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface Show {
@@ -39,6 +46,8 @@ export interface Show {
   venueId: string;
   seatingLayoutId: string;
   performances: Performance[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface Performance {
@@ -87,6 +96,7 @@ export interface Booking {
   createdAt: string;
   updatedAt: string;
   bookingItems: BookingItem[];
+
 }
 
 export interface BookingItem {
@@ -171,6 +181,11 @@ export interface BookingFormData {
   smsOptIn: boolean;
   accessibilityRequirements?: string;
   specialRequests?: string;
+  address?: string;
+  city?: string;
+  postcode?: string;
+  country?: string;
+
 }
 
 export interface SeatingLayoutConfig {
