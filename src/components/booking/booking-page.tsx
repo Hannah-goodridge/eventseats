@@ -207,7 +207,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
           {/* Show Image */}
           <div className="md:col-span-1">
-            <div className="relative h-48 md:h-64 w-full rounded-lg overflow-hidden shadow-md">
+            <div className="relative h-40 sm:h-56 md:h-64 w-full rounded-lg overflow-hidden shadow-md">
               {show.imageUrl ? (
                 <Image
                   src={show.imageUrl}
@@ -234,10 +234,10 @@ export const BookingPage: React.FC<BookingPageProps> = ({
               >
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <svg className="w-16 h-16 mx-auto mb-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
                     </svg>
-                    <p className="text-sm text-gray-500">Show Image</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Show Image</p>
                   </div>
                 </div>
               </div>

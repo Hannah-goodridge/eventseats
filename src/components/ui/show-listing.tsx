@@ -26,7 +26,7 @@ const ShowCard: React.FC<ShowCardProps> = ({ show, onBookShow }) => {
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
       {/* Show Image */}
-      <div className="relative h-48 w-full">
+      <div className="relative h-40 sm:h-48 md:h-56 w-full">
         {show.imageUrl ? (
           <Image
             src={show.imageUrl}
@@ -46,7 +46,7 @@ const ShowCard: React.FC<ShowCardProps> = ({ show, onBookShow }) => {
         ) : null}
         {/* Placeholder image - shown when no image URL or when image fails to load */}
         <div
-          className={`relative h-48 w-full ${show.imageUrl ? 'hidden' : 'block'}`}
+          className={`relative h-40 sm:h-48 md:h-56 w-full ${show.imageUrl ? 'hidden' : 'block'}`}
           style={{
             background: 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)',
             display: show.imageUrl ? 'none' : 'block'
@@ -66,7 +66,7 @@ const ShowCard: React.FC<ShowCardProps> = ({ show, onBookShow }) => {
       <div className="p-6">
         {/* Show Title and Genre */}
         <div className="mb-4">
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">{show.title}</h3>
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">{show.title}</h3>
           {show.genre && (
             <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded">
               {show.genre}
@@ -101,7 +101,7 @@ const ShowCard: React.FC<ShowCardProps> = ({ show, onBookShow }) => {
         {/* Pricing */}
         <div className="mb-4 p-3 bg-gray-50 rounded">
           <h4 className="text-sm font-medium text-gray-900 mb-2">Ticket Prices</h4>
-          <div className="grid grid-cols-3 gap-4 text-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-sm">
             <div className="text-center">
               <p className="text-gray-800">Adult</p>
               <p className="font-semibold text-gray-800">{formatPrice(show.adultPrice)}</p>
@@ -135,6 +135,7 @@ const ShowCard: React.FC<ShowCardProps> = ({ show, onBookShow }) => {
                 <Button
                   variant="primary"
                   size="sm"
+                  className="w-full sm:w-auto"
                   onClick={() => onBookShow(show.id, performance.id)}
                 >
                   Book Now
