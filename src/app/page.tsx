@@ -57,31 +57,43 @@ const convertApiShowToShow = (apiShow: ApiShow): Show => ({
 
 export default function Home() {
   const [shows, setShows] = useState<Show[]>([])
+  const [settings, setSettings] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchShows = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true)
-        const response = await fetch('/api/shows?published=true')
-        const data = await response.json()
+        
+        // Fetch settings and shows in parallel
+        const [settingsResponse, showsResponse] = await Promise.all([
+          fetch('/api/settings'),
+          fetch('/api/shows?published=true')
+        ])
 
-        if (data.success) {
-          const convertedShows = data.data.map(convertApiShowToShow)
+        const settingsData = await settingsResponse.json()
+        const showsData = await showsResponse.json()
+
+        if (settingsData.success) {
+          setSettings(settingsData.data)
+        }
+
+        if (showsData.success) {
+          const convertedShows = showsData.data.map(convertApiShowToShow)
           setShows(convertedShows)
         } else {
-          setError(data.error || 'Failed to fetch shows')
+          setError(showsData.error || 'Failed to fetch shows')
         }
       } catch (err) {
-        setError('Error fetching shows')
+        setError('Error fetching data')
         console.error('Error:', err)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchShows()
+    fetchData()
   }, [])
 
   const handleBookShow = (showId: string, performanceId: string) => {
@@ -97,8 +109,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Demo Theatre</h1>
-              <p className="text-gray-600">Community Drama Group</p>
+              <h1 className="text-2xl font-bold text-gray-900">
+                {settings?.venue?.name || 'Demo Theatre'}
+              </h1>
+              <p className="text-gray-600">
+                {settings?.system?.tagline || 'Community Drama Group'}
+              </p>
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="/" className="text-blue-600 font-medium">What's On</a>
@@ -137,7 +153,7 @@ export default function Home() {
       <footer className="bg-white border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-gray-600">
-            <p>&copy; 2024 Demo Theatre. All rights reserved.</p>
+            <p>&copy; 2024 {settings?.venue?.name || 'Demo Theatre'}. All rights reserved.</p>
             <p className="mt-2 text-sm">
               Contact information and additional links can be configured in{' '}
               <a href="/admin/settings" className="text-blue-600 hover:text-blue-800">
