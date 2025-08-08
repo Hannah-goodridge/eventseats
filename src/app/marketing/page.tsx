@@ -253,11 +253,7 @@ export default function MarketingPage() {
 
               {/* Hosted Tier */}
               <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200 relative">
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <span className="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-blue-500 text-white">
-                    Most Popular
-                  </span>
-                </div>
+
                 <div className="p-6">
                   <h2 className="text-lg leading-6 font-medium text-gray-900">Hosted Starter</h2>
                   <p className="mt-4 text-sm text-gray-500">Perfect for small theatre groups</p>
