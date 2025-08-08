@@ -101,9 +101,49 @@ export default function AdminSettingsPage() {
   const loadSettings = async () => {
     setIsLoading(true)
     try {
-      // TODO: Load settings from API when implemented
-      // For now, using default values
-      console.log('Loading settings...')
+      const response = await fetch('/api/settings')
+      const data = await response.json()
+
+      if (data.success && data.data) {
+        const settings = data.data
+
+        // Update venue settings
+        if (settings.venue) {
+          setVenueSettings({
+            name: settings.venue.name || '',
+            address: settings.venue.address || '',
+            city: settings.venue.city || '',
+            postcode: settings.venue.postcode || '',
+            phone: settings.venue.phone || '',
+            email: settings.venue.email || '',
+            website: settings.venue.website || ''
+          })
+        }
+
+        // Update system settings
+        if (settings.system) {
+          setSystemSettings({
+            siteName: settings.system.siteName || '',
+            siteDescription: settings.system.siteDescription || '',
+            maintenanceMode: settings.system.maintenanceMode || false,
+            maxSeatsPerBooking: settings.system.maxSeatsPerBooking || 8,
+            advanceBookingDays: settings.system.advanceBookingDays || 90
+          })
+        }
+
+        // Update external links
+        if (settings.external) {
+          setExternalLinks({
+            aboutUsUrl: settings.external.aboutUsUrl || '',
+            contactUrl: settings.external.contactUrl || '',
+            facebookUrl: settings.external.facebookUrl || '',
+            twitterUrl: settings.external.twitterUrl || '',
+            instagramUrl: settings.external.instagramUrl || '',
+            privacyPolicyUrl: settings.external.privacyPolicyUrl || '',
+            termsOfServiceUrl: settings.external.termsOfServiceUrl || ''
+          })
+        }
+      }
     } catch (error) {
       console.error('Error loading settings:', error)
     } finally {
@@ -114,17 +154,25 @@ export default function AdminSettingsPage() {
   const handleSaveSettings = async () => {
     setIsSaving(true)
     try {
-      // TODO: Save settings to API when implemented
-      console.log('Saving settings:', {
-        venue: venueSettings,
-        booking: bookingSettings,
-        system: systemSettings
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          venue: venueSettings,
+          system: systemSettings,
+          external: externalLinks
+        })
       })
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      const data = await response.json()
 
-      alert('Settings saved successfully!')
+      if (data.success) {
+        alert('Settings saved successfully!')
+      } else {
+        alert('Failed to save settings: ' + (data.error || 'Unknown error'))
+      }
     } catch (error) {
       console.error('Error saving settings:', error)
       alert('Failed to save settings. Please try again.')

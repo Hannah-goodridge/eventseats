@@ -18,13 +18,18 @@ VALUES (
 ) ON CONFLICT (slug) DO NOTHING;
 
 -- Insert demo venue (using the organization ID)
-INSERT INTO venues (id, name, slug, description, address, capacity, "organizationId", "createdAt", "updatedAt")
+INSERT INTO venues (id, name, slug, description, address, city, postcode, phone, email, website, capacity, "organizationId", "createdAt", "updatedAt")
 SELECT
   gen_random_uuid(),
-  'Main Hall',
+  'Demo Community Centre',
   'main-hall',
   'Our main event space with flexible seating arrangements',
-  '123 Community Street, Demo City, DC1 2AB',
+  '123 Community Street',
+  'Demo City',
+  'DC1 2AB',
+  '+44 1234 567890',
+  'info@democentre.org',
+  'https://democentre.org',
   100,
   o.id,
   NOW(),

@@ -49,12 +49,30 @@ CREATE TABLE "public"."venues" (
     "slug" TEXT NOT NULL,
     "description" TEXT,
     "address" TEXT,
+    "city" TEXT,
+    "postcode" TEXT,
+    "phone" TEXT,
+    "email" TEXT,
+    "website" TEXT,
     "capacity" INTEGER,
     "organizationId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "venues_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "public"."settings" (
+    "id" TEXT NOT NULL,
+    "organizationId" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
+    "key" TEXT NOT NULL,
+    "value" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "settings_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -247,6 +265,12 @@ ALTER TABLE "public"."shows" ADD CONSTRAINT "shows_organizationId_fkey" FOREIGN 
 
 -- AddForeignKey
 ALTER TABLE "public"."shows" ADD CONSTRAINT "shows_venueId_fkey" FOREIGN KEY ("venueId") REFERENCES "public"."venues"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- Add foreign key for settings table
+ALTER TABLE "public"."settings" ADD CONSTRAINT "settings_organizationId_fkey" FOREIGN KEY ("organizationId") REFERENCES "public"."organizations"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Add unique constraint for settings
+CREATE UNIQUE INDEX "settings_organizationId_type_key_key" ON "public"."settings"("organizationId", "type", "key");
 
 -- AddForeignKey
 ALTER TABLE "public"."shows" ADD CONSTRAINT "shows_seatingLayoutId_fkey" FOREIGN KEY ("seatingLayoutId") REFERENCES "public"."seating_layouts"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
