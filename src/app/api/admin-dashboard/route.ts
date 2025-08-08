@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
-import { getServerSession } from 'next-auth'
+import { auth } from '@/lib/auth'
 
 export async function GET(request: NextRequest) {
   try {
     // Check authentication
-    const session = await getServerSession()
+    const session = await auth()
 
     if (!session?.user?.email) {
       return NextResponse.json({

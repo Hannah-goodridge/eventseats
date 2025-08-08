@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { randomUUID } from 'crypto'
 
 interface CreatePerformanceRequest {
   showId: string
@@ -35,13 +36,19 @@ export async function POST(request: NextRequest) {
     }
 
     // Create the performance
+    const performanceId = randomUUID()
+    const now = new Date().toISOString()
+
     const { data: performance, error } = await supabase
       .from('performances')
       .insert({
+        id: performanceId,
         showId: body.showId,
         dateTime: body.dateTime,
         isMatinee: body.isMatinee || false,
-        notes: body.notes || ''
+        notes: body.notes || '',
+        createdAt: now,
+        updatedAt: now
       })
       .select()
       .single()

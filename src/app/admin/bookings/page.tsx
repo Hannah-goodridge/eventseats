@@ -181,11 +181,11 @@ export default function AdminBookingsPage() {
             <a href="/admin" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:text-gray-800">
               Dashboard
             </a>
-            <a href="/admin/bookings" className="py-3 px-1 border-b-2 border-blue-500 text-sm font-medium text-blue-600">
-              Bookings
-            </a>
             <a href="/admin/shows" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:text-gray-800">
               Shows
+            </a>
+            <a href="/admin/bookings" className="py-3 px-1 border-b-2 border-blue-500 text-sm font-medium text-blue-600">
+              Bookings
             </a>
             <a href="/admin/customers" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:text-gray-800">
               Customers

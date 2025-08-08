@@ -133,6 +133,24 @@ export default function AdminSettingsPage() {
     }
   }
 
+  const handleSave = async () => {
+    setIsSaving(true)
+    try {
+      // TODO: Save external links to API when implemented
+      console.log('Saving external links:', externalLinks)
+
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000))
+
+      alert('External links saved successfully!')
+    } catch (error) {
+      console.error('Error saving external links:', error)
+      alert('Failed to save external links. Please try again.')
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
   const tabs = [
     { id: 'venue', name: 'Venue Information', icon: '🏛️' },
     { id: 'booking', name: 'Booking Settings', icon: '🎫' },
@@ -188,11 +206,11 @@ export default function AdminSettingsPage() {
             <a href="/admin" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:text-gray-800">
               Dashboard
             </a>
-            <a href="/admin/bookings" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:text-gray-800">
-              Bookings
-            </a>
             <a href="/admin/shows" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:text-gray-800">
               Shows
+            </a>
+            <a href="/admin/bookings" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:text-gray-800">
+              Bookings
             </a>
             <a href="/admin/customers" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:text-gray-800">
               Customers

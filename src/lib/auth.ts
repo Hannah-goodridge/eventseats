@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
+import { randomUUID } from 'crypto'
 import { supabase } from './supabase'
 import { UserRole } from '../types'
 
@@ -124,15 +125,21 @@ export async function createAdminUser(
 ) {
   const hashedPassword = await hashPassword(password)
 
+  const userId = randomUUID()
+  const now = new Date().toISOString()
+
   const { data, error } = await supabase
     .from('users')
     .insert({
+      id: userId,
       email,
       hashedPassword,
       name,
       role: 'ADMIN' as UserRole,
       organizationId,
-      emailVerified: new Date().toISOString()
+      emailVerified: now,
+      createdAt: now,
+      updatedAt: now
     })
     .select()
     .single()

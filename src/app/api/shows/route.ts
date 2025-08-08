@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { randomUUID } from 'crypto'
 
 interface CreateShowRequest {
   title: string
@@ -29,9 +30,13 @@ export async function POST(request: NextRequest) {
     const slug = body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 
     // Create the show
+    const showId = randomUUID()
+    const now = new Date().toISOString()
+
     const { data: show, error } = await supabase
       .from('shows')
       .insert({
+        id: showId,
         title: body.title,
         slug: slug,
         description: body.description || '',
@@ -45,7 +50,9 @@ export async function POST(request: NextRequest) {
         // Set default IDs for required fields - these should be configurable in a real app
         organizationId: '550e8400-e29b-41d4-a716-446655440000', // Demo org ID
         venueId: 'a550e840-e29b-41d4-a716-446655440000', // Demo venue ID
-        seatingLayoutId: '869f0aca-0611-4b8b-bf16-b9356854b35a' // Demo seating layout ID
+        seatingLayoutId: '869f0aca-0611-4b8b-bf16-b9356854b35a', // Demo seating layout ID
+        createdAt: now,
+        updatedAt: now
       })
       .select()
       .single()
