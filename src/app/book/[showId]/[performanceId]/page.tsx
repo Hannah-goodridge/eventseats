@@ -65,7 +65,7 @@ export default function BookingRoute() {
           genre: foundShow.genre || '',
           duration: foundShow.duration || 120,
           ageRating: foundShow.ageRating || 'PG',
-          warnings: null,
+          warnings: undefined,
           adultPrice: foundShow.adultPrice,
           childPrice: foundShow.childPrice,
           concessionPrice: foundShow.concessionPrice,
@@ -73,8 +73,7 @@ export default function BookingRoute() {
           organizationId: '1',
           venueId: '1',
           seatingLayoutId: '1',
-          createdAt: new Date(),
-          updatedAt: new Date(),
+
           performances: foundShow.performances.map(p => ({
             id: p.id,
             dateTime: new Date(p.dateTime),
