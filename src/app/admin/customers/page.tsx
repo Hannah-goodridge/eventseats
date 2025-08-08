@@ -30,7 +30,7 @@ export default function AdminCustomersPage() {
     }
 
     // Initial load only; subsequent loads triggered by Search/Clear/Page change
-
+    loadCustomers()
   }, [status, router])
 
   const loadCustomers = async () => {
