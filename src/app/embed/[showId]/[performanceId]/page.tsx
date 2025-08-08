@@ -10,6 +10,7 @@ interface ApiShow {
   title: string
   slug: string
   description?: string
+  imageUrl?: string
   genre?: string
   duration?: number
   ageRating?: string
@@ -61,7 +62,7 @@ export default function EmbedBookingRoute() {
           title: foundShow.title,
           slug: foundShow.slug,
           description: foundShow.description || '',
-          imageUrl: '',
+          imageUrl: foundShow.imageUrl || '',
           genre: foundShow.genre || '',
           duration: foundShow.duration || 120,
           ageRating: foundShow.ageRating || 'PG',

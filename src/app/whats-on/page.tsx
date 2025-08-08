@@ -9,6 +9,7 @@ interface ApiShow {
   title: string
   slug: string
   description?: string
+  imageUrl?: string
   genre?: string
   duration?: number
   ageRating?: string
@@ -30,7 +31,7 @@ const convertApiShowToShow = (apiShow: ApiShow): Show => ({
   title: apiShow.title,
   slug: apiShow.slug,
   description: apiShow.description || '',
-  imageUrl: '', // No image - will use CSS placeholder
+  imageUrl: apiShow.imageUrl || '',
   genre: apiShow.genre || '',
   duration: apiShow.duration || 120,
   ageRating: apiShow.ageRating || 'PG',
