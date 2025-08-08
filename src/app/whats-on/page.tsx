@@ -117,7 +117,7 @@ export default function WhatsOnPage() {
               </p>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="/whats-on" className="text-blue-600 font-medium">What's On</a>
+              <a href="/whats-on" className="text-[#39BB9A] font-medium">What's On</a>
               <a href="/admin" className="text-gray-600 hover:text-gray-900">Admin</a>
             </nav>
           </div>

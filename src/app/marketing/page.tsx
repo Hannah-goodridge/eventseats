@@ -21,6 +21,7 @@ export default function MarketingPage() {
               <a href="#features" className="text-gray-500 hover:text-gray-900">Features</a>
               <a href="#pricing" className="text-gray-500 hover:text-gray-900">Pricing <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full ml-1">Soon</span></a>
               <a href="#docs" className="text-gray-500 hover:text-gray-900">Documentation</a>
+              <a href="/whats-on" className="text-[#39BB9A] hover:text-[#1b6452] font-medium">What's On</a>
               <a href="https://github.com/Hannah-goodridge/eventseats" className="text-gray-500 hover:text-gray-900">GitHub</a>
             </nav>
             <div className="flex items-center space-x-4">
@@ -50,7 +51,7 @@ export default function MarketingPage() {
               and community events. Professional booking experience without the enterprise cost.
             </p>
             <div className="mt-10 flex justify-center gap-x-6">
-              <Button variant="primary" size="lg">
+                <Button variant="primary" size="lg">
                 <a href="#get-started">Start Free Today</a>
               </Button>
               <Button variant="outline" size="lg">
@@ -364,7 +365,7 @@ export default function MarketingPage() {
           <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-20 lg:px-8">
             <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
               <div>
-                <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+              <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
                   Ready to sell tickets the smart way?
                 </h2>
                 <p className="mt-3 max-w-3xl text-lg text-blue-200">
@@ -372,10 +373,10 @@ export default function MarketingPage() {
                   Start with our free 30-day trial or download the open-source version.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                  <Button variant="outline" size="lg" className="bg-white text-blue-600 hover:bg-gray-50">
+              <Button variant="outline" size="lg" className="bg-white text-[#1b6452] hover:bg-gray-50">
                     <a href="https://github.com/Hannah-goodridge/eventseats">Get Started (GitHub)</a>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-blue-700">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-[#034a43]">
                     <a href="https://github.com/Hannah-goodridge/eventseats">View on GitHub</a>
                   </Button>
                 </div>
