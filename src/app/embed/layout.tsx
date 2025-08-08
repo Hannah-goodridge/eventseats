@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Book Tickets - Show Bookings System",
+  title: "Book Tickets - EventSeats software",
   description: "Secure online ticket booking",
   robots: "noindex, nofollow", // Prevent indexing of embed pages
 };

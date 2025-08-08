@@ -302,7 +302,6 @@ Contributors are recognized in several ways:
 
 - **GitHub Discussions** - General questions and ideas
 - **GitHub Issues** - Bug reports and feature requests
-- **Email** - hello@hannahgoodridge.dev for direct contact
 
 ### Maintainer Response Times
 

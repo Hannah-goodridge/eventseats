@@ -1,6 +1,6 @@
-# Show Bookings System API
+# EventSeats software API
 
-This document describes the REST API endpoints for the Show Bookings System.
+This document describes the REST API endpoints for the EventSeats software.
 
 ## Base URL
 ```

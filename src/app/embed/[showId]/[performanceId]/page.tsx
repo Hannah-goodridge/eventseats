@@ -313,7 +313,7 @@ export default function EmbedBookingRoute() {
       <footer className="bg-white border-t border-gray-200 py-2">
         <div className="text-center">
           <p className="text-xs text-gray-500">
-            Powered by Show Bookings System
+            Powered by <a href="https://hannahgoodridge.dev" target="_blank" rel="noopener noreferrer" className="underline">hannahgoodridge.dev</a>
           </p>
         </div>
       </footer>

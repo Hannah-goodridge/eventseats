@@ -1,6 +1,6 @@
 # Simple Embedding Guide
 
-The Show Bookings System can be easily embedded into external websites using simple HTML iframes. No complex APIs or JavaScript required!
+The Event Seats can be easily embedded into external websites using simple HTML iframes. No complex APIs or JavaScript required!
 
 ## Quick Start
 

@@ -1,6 +1,6 @@
 # Deploy to Railway
 
-Deploy your Show Bookings System to Railway with their integrated PostgreSQL database.
+Deploy EventSeats software to Railway with their integrated PostgreSQL database.
 
 ## Prerequisites
 

@@ -1,4 +1,4 @@
-// Core types for the Show Bookings System
+// Core types for the EventSeats software
 
 export interface Seat {
   id: string;

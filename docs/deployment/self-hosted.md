@@ -1,6 +1,6 @@
 # Self-Hosted Deployment
 
-Deploy your Show Bookings System on your own server or VPS.
+Deploy EventSeats software on your own server or VPS.
 
 ## Prerequisites
 

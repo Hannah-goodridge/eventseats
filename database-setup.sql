@@ -1,4 +1,4 @@
--- Show Bookings System Database Setup
+-- EventSeats Software Database Setup
 -- Run this script in your Supabase SQL Editor
 
 -- CreateSchema
