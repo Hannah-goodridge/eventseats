@@ -40,7 +40,7 @@
     "next-auth": "^5.0.0-beta.29",
     "nodemailer": "^6.10.1",
     "qrcode": "^1.5.4",
-    "react": "19.1.0",
+    "react": "19.1.1",
     "react-dom": "19.1.0",
     "react-hook-form": "^7.62.0",
     "react-redux": "^9.2.0",
