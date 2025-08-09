@@ -34,8 +34,7 @@ npm install
 # Copy environment variables
 cp env.example .env.local
 
-# Set up the database
-npm run setup-db
+# Set up the database (see Database Setup below)
 
 # Start development server
 npm run dev
@@ -65,7 +64,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see your booking system!
 
 ### Prerequisites
 
-- **Node.js** 18+ ([Download here](https://nodejs.org/))
+- **Node.js** 20+ ([Download here](https://nodejs.org/))
 - **PostgreSQL** or **Supabase** account ([Get free account](https://supabase.com/))
 - **Stripe** account for payments - **Optional** (work in progress) ([Get account](https://stripe.com/))
 
@@ -105,10 +104,8 @@ STRIPE_PUBLISHABLE_KEY=pk_test_...
 **Option A: Supabase (Recommended)**
 1. Create account at [supabase.com](https://supabase.com/)
 2. Create new project
-3. Run the setup script:
-```bash
-npm run setup-supabase
-```
+3. Open Supabase SQL Editor and run the contents of `database-setup.sql`
+4. Then run `docs/setup-demo-user.sql` to create a demo admin user
 
 **Option B: Local PostgreSQL**
 ```bash
@@ -116,8 +113,9 @@ npm run setup-supabase
 # Create database
 createdb eventseats
 
-# Run setup
-npm run setup-db
+# Apply schema and demo data
+psql eventseats -f database-setup.sql
+psql eventseats -f docs/setup-demo-user.sql
 ```
 
 ### Step 4: Run the Application

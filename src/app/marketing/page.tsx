@@ -426,7 +426,7 @@ export default function MarketingPage() {
                 <h4 className="text-white font-medium">Resources</h4>
                 <ul className="mt-4 space-y-2">
                   <li><a href="/docs" className="text-gray-300 hover:text-white text-sm">Documentation</a></li>
-                  <li><a href="https://github.com/hannahgoodridge/show-bookings-system" className="text-gray-300 hover:text-white text-sm">GitHub</a></li>
+                  <li><a href="https://github.com/hannahgoodridge/eventseats" className="text-gray-300 hover:text-white text-sm">GitHub</a></li>
 
                 </ul>
               </div>

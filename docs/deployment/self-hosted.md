@@ -352,7 +352,7 @@ mkdir -p $BACKUP_DIR
 sudo -u postgres pg_dump show_bookings > $BACKUP_DIR/db_$DATE.sql
 
 # Application backup
-tar -czf $BACKUP_DIR/app_$DATE.tar.gz /path/to/show-bookings-system
+tar -czf $BACKUP_DIR/app_$DATE.tar.gz /path/to/eventseats
 
 # Keep only last 30 days
 find $BACKUP_DIR -name "*.sql" -mtime +30 -delete

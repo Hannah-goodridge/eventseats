@@ -20,8 +20,8 @@ Thank you for your interest in contributing to EventSeats! This document provide
 1. **Fork the repository** on GitHub
 2. **Clone your fork** locally:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/show-bookings-system.git
-   cd show-bookings-system
+   git clone https://github.com/YOUR_USERNAME/eventseats.git
+   cd eventseats
    ```
 
 3. **Add upstream remote**:
