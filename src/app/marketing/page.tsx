@@ -13,16 +13,16 @@ export default function MarketingPage() {
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <h1 className="text-2xl font-bold text-gray-900">EventSeats</h1>
-                <p className="text-sm text-gray-600">Open Source Event Booking</p>
+                 <h1 className="text-2xl font-bold text-primary">EventSeats</h1>
+                 <p className="text-sm text-gray-600">Open Source Event Booking</p>
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#features" className="text-gray-500 hover:text-gray-900">Features</a>
-              <a href="#pricing" className="text-gray-500 hover:text-gray-900">Pricing <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full ml-1">Soon</span></a>
-              <a href="#docs" className="text-gray-500 hover:text-gray-900">Documentation</a>
-              <a href="/whats-on" className="text-[#39BB9A] hover:text-[#1b6452] font-medium">What's On</a>
-              <a href="https://github.com/Hannah-goodridge/eventseats" className="text-gray-500 hover:text-gray-900">GitHub</a>
+              <a href="#features" className="text-gray-500 hover:text-lowestlight">Features</a>
+              <a href="#pricing" className="text-gray-500 hover:text-lowestlight">Pricing <span className="text-xs" style={{ backgroundColor: 'color-mix(in srgb, var(--yellow) 20%, white)', color: 'color-mix(in srgb, var(--yellow) 70%, black)' }}>Soon</span></a>
+              <a href="#docs" className="text-gray-500 hover:text-lowestlight">Documentation</a>
+              <a href="/whats-on" className="text-highlight hover:text-lowlight font-medium">What&apos;s On</a>
+              <a href="https://github.com/Hannah-goodridge/eventseats" className="text-gray-500 hover:text-lowestlight">GitHub</a>
             </nav>
             <div className="flex items-center space-x-4">
               <Link href="/admin/login">
@@ -40,13 +40,13 @@ export default function MarketingPage() {
       <main>
         <div className="relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32">
-                        <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
+                        <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-primary sm:text-7xl">
               Event Seat Booking
             <span className="relative whitespace-nowrap text-highlight">
                 <span className="relative"> Made Simple</span>
               </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
+            <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-gray-700">
               Free, open-source seat booking system designed for small venues, theatre groups,
               and community events. Professional booking experience without the enterprise cost.
             </p>
@@ -62,11 +62,11 @@ export default function MarketingPage() {
         </div>
 
         {/* Features Section */}
-        <section id="features" className="py-24 bg-slate-50">
+        <section id="features" className="py-24" style={{ backgroundColor: 'color-mix(in srgb, var(--highlight) 6%, white)' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
           <h2 className="text-base font-semibold text-highlight tracking-wide uppercase">Features</h2>
-              <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-primary sm:text-4xl">
                 Everything you need to sell tickets
               </p>
               <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
@@ -77,7 +77,7 @@ export default function MarketingPage() {
             <div className="mt-20">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {/* Feature 1 */}
-                <div className="pt-6">
+                 <div className="pt-6">
                   <div className="flow-root bg-white rounded-lg px-6 pb-8">
                     <div className="-mt-6">
                       <div>
@@ -87,7 +87,7 @@ export default function MarketingPage() {
                           </svg>
                         </span>
                       </div>
-                      <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Interactive Seat Selection</h3>
+                      <h3 className="mt-8 text-lg font-medium text-primary tracking-tight">Interactive Seat Selection</h3>
                       <p className="mt-5 text-base text-gray-500">
                         Visual seat maps with real-time availability. Customers can see exactly where they&#39;ll sit.
                       </p>
@@ -106,7 +106,7 @@ export default function MarketingPage() {
                           </svg>
                         </span>
                       </div>
-                      <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Multiple Ticket Types</h3>
+                      <h3 className="mt-8 text-lg font-medium text-primary tracking-tight">Multiple Ticket Types</h3>
                       <p className="mt-5 text-base text-gray-500">
                         Adult, child, and concession pricing. Perfect for family-friendly shows and student discounts.
                       </p>
@@ -125,7 +125,7 @@ export default function MarketingPage() {
                           </svg>
                         </span>
                       </div>
-                      <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Embed Anywhere</h3>
+                      <h3 className="mt-8 text-lg font-medium text-primary tracking-tight">Embed Anywhere</h3>
                       <p className="mt-5 text-base text-gray-500">
                         Add booking to your existing website with a simple iframe. Works with WordPress, Squarespace, and any platform.
                       </p>
@@ -144,7 +144,7 @@ export default function MarketingPage() {
                           </svg>
                         </span>
                       </div>
-                      <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Lightning Fast</h3>
+                      <h3 className="mt-8 text-lg font-medium text-primary tracking-tight">Lightning Fast</h3>
                       <p className="mt-5 text-base text-gray-500">
                         Built with Next.js and optimized for speed. Your customers won&#39;t wait around to buy tickets.
                       </p>
@@ -163,7 +163,7 @@ export default function MarketingPage() {
                           </svg>
                         </span>
                       </div>
-                      <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Secure & Reliable</h3>
+                      <h3 className="mt-8 text-lg font-medium text-primary tracking-tight">Secure & Reliable</h3>
                       <p className="mt-5 text-base text-gray-500">
                         Built with security best practices. Your customer data and bookings are safe and protected.
                       </p>
@@ -182,7 +182,7 @@ export default function MarketingPage() {
                           </svg>
                         </span>
                       </div>
-                      <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">Open Source</h3>
+                      <h3 className="mt-8 text-lg font-medium text-primary tracking-tight">Open Source</h3>
                       <p className="mt-5 text-base text-gray-500">
                         100% open source. Self-host for free, or use our hosted service. No vendor lock-in, ever.
                       </p>
@@ -198,7 +198,7 @@ export default function MarketingPage() {
         <section id="pricing" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              <h2 className="text-3xl font-extrabold text-primary sm:text-4xl">
                 Pricing that makes sense for small groups
               </h2>
               <p className="mt-4 text-xl text-gray-600">
@@ -208,20 +208,20 @@ export default function MarketingPage() {
 
             <div className="mt-20 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {/* Free Tier */}
-              <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200">
+              <div className="border rounded-lg shadow-sm divide-y" style={{ borderColor: 'color-mix(in srgb, var(--highlight) 30%, #e5e7eb)' }}>
                 <div className="p-6">
-                  <h2 className="text-lg leading-6 font-medium text-gray-900">Self-Hosted</h2>
+                   <h2 className="text-lg leading-6 font-medium text-primary">Self-Hosted</h2>
                   <p className="mt-4 text-sm text-gray-500">Perfect for tech-savvy groups and developers</p>
                   <p className="mt-8">
                     <span className="text-4xl font-extrabold text-gray-900">£0</span>
                     <span className="text-base font-medium text-gray-500">/month</span>
                   </p>
-                  <Button variant="outline" className="mt-8 w-full">
+                   <Button variant="outline" className="mt-8 w-full border-highlight text-lowlight hover:bg-highlight hover:text-white">
                     <a href="https://github.com/Hannah-goodridge/eventseats">Download on GitHub</a>
                   </Button>
                 </div>
                 <div className="pt-6 pb-8 px-6">
-                  <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">What's included</h3>
+                  <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">What&apos;s included</h3>
                   <ul className="mt-6 space-y-4">
                     <li className="flex space-x-3">
                       <svg className="flex-shrink-0 h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
@@ -252,10 +252,10 @@ export default function MarketingPage() {
               </div>
 
               {/* Hosted Tier */}
-              <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200 relative">
+              <div className="border rounded-lg shadow-sm divide-y relative" style={{ borderColor: 'color-mix(in srgb, var(--highlight) 30%, #e5e7eb)' }}>
 
                 <div className="p-6">
-                  <h2 className="text-lg leading-6 font-medium text-gray-900">Hosted Starter</h2>
+                  <h2 className="text-lg leading-6 font-medium text-primary">Hosted Starter</h2>
                   <p className="mt-4 text-sm text-gray-500">Perfect for small theatre groups</p>
                   <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
                     <p className="text-sm text-yellow-800 font-medium">🚧 Coming Soon</p>
@@ -270,7 +270,7 @@ export default function MarketingPage() {
                   </Button>
                 </div>
                 <div className="pt-6 pb-8 px-6">
-                  <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">What's included</h3>
+                   <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">What&apos;s included</h3>
                   <ul className="mt-6 space-y-4">
                     <li className="flex space-x-3">
                       <svg className="flex-shrink-0 h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
@@ -307,9 +307,9 @@ export default function MarketingPage() {
               </div>
 
               {/* Enterprise Tier */}
-              <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200">
+              <div className="border rounded-lg shadow-sm divide-y" style={{ borderColor: 'color-mix(in srgb, var(--highlight) 30%, #e5e7eb)' }}>
                 <div className="p-6">
-                  <h2 className="text-lg leading-6 font-medium text-gray-900">Custom Enterprise</h2>
+                  <h2 className="text-lg leading-6 font-medium text-primary">Custom Enterprise</h2>
                   <p className="mt-4 text-sm text-gray-500">For larger venues and organizations</p>
                   <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
                     <p className="text-sm text-blue-800 font-medium">💬 Available Now</p>
@@ -318,12 +318,12 @@ export default function MarketingPage() {
                   <p className="mt-8">
                     <span className="text-4xl font-extrabold text-gray-900">Custom</span>
                   </p>
-                  <Button variant="outline" className="mt-8 w-full">
+                   <Button variant="outline" className="mt-8 w-full border-highlight text-lowlight hover:bg-highlight hover:text-white">
                     <a href="mailto:hello@hannahgoodridge.dev">Contact Us</a>
                   </Button>
                 </div>
                 <div className="pt-6 pb-8 px-6">
-                  <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">What's included</h3>
+                   <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">What&apos;s included</h3>
                   <ul className="mt-6 space-y-4">
                     <li className="flex space-x-3">
                       <svg className="flex-shrink-0 h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
@@ -379,7 +379,7 @@ export default function MarketingPage() {
               </div>
               <div className="mt-8 lg:mt-0">
                 <div className="bg-white rounded-lg shadow-lg p-6">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Quick Start</h3>
+                  <h3 className="text-lg font-medium text-primary mb-4">Quick Start</h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center text-gray-600">
                       <span className="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs font-bold text-blue-600 mr-3">1</span>

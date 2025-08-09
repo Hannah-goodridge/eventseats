@@ -99,7 +99,7 @@ const ShowCard: React.FC<ShowCardProps> = ({ show, onBookShow }) => {
         )}
 
         {/* Pricing */}
-        <div className="mb-4 p-3 bg-gray-50 rounded">
+          <div className="mb-4 p-3 rounded" style={{ backgroundColor: "color-mix(in srgb, var(--highlight) 6%, white)" }}>
           <h4 className="text-sm font-medium text-gray-900 mb-2">Ticket Prices</h4>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-sm">
             <div className="text-center">
@@ -122,14 +122,14 @@ const ShowCard: React.FC<ShowCardProps> = ({ show, onBookShow }) => {
           <div className="space-y-3">
             <h4 className="text-sm font-medium text-gray-900">Upcoming Performances</h4>
             {upcomingPerformances.slice(0, 3).map((performance) => (
-              <div key={performance.id} className="flex items-center justify-between p-3 bg-emerald-50 rounded border border-emerald-200">
+              <div key={performance.id} className="flex items-center justify-between p-3 rounded border" style={{ backgroundColor: "color-mix(in srgb, var(--highlight) 10%, white)", borderColor: "color-mix(in srgb, var(--highlight) 30%, white)" }}>
                 <div>
                   <p className="font-medium text-gray-900">
                     {formatDate(performance.dateTime)}
                   </p>
                   <p className="text-sm text-gray-700">
                     {formatTime(performance.dateTime)}
-                    {performance.isMatinee && <span className="ml-2 text-xs bg-green-100 text-green-800 px-1 rounded">Matinee</span>}
+                    {performance.isMatinee && <span className="ml-2 text-xs px-1 rounded" style={{ backgroundColor: "color-mix(in srgb, var(--highlight) 15%, white)", color: "var(--lowlight)" }}>Matinee</span>}
                   </p>
                 </div>
                 <Button

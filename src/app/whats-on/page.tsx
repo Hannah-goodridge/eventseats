@@ -104,22 +104,22 @@ export default function WhatsOnPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ backgroundColor: 'color-mix(in srgb, var(--highlight) 6%, white)' }}>
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-white shadow-sm border-b" style={{ borderColor: 'color-mix(in srgb, var(--highlight) 30%, #e5e7eb)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h1 className="text-2xl font-bold text-primary">
                 {settings?.venue?.name || 'Demo Theatre'}
               </h1>
               <p className="text-gray-600">
                 {settings?.system?.tagline || 'Community Drama Group'}
               </p>
             </div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="/whats-on" className="text-[#39BB9A] font-medium">What's On</a>
-              <a href="/admin" className="text-gray-600 hover:text-gray-900">Admin</a>
+             <nav className="hidden md:flex space-x-8">
+              <a href="/whats-on" className="text-highlight font-medium hover:text-lowlight">What&apos;s On</a>
+              <a href="/admin" className="text-gray-600 hover:text-lowestlight">Admin</a>
             </nav>
           </div>
         </div>
@@ -132,10 +132,10 @@ export default function WhatsOnPage() {
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-highlight"></div>
           </div>
         ) : error ? (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+           <div className="bg-red-50 border border-red-200 rounded-md p-4">
             <h3 className="text-red-800 font-medium">Error loading shows</h3>
             <p className="text-red-600 mt-1">{error}</p>
-            <button
+             <button
               onClick={() => window.location.reload()}
               className="mt-3 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
             >
@@ -151,12 +151,12 @@ export default function WhatsOnPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-16">
+      <footer className="bg-white border-t mt-16" style={{ borderColor: 'color-mix(in srgb, var(--highlight) 30%, #e5e7eb)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Venue Info */}
             <div className="text-center md:text-left">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <h3 className="text-lg font-semibold text-primary mb-2">
                 {settings?.venue?.name || 'Demo Theatre'}
               </h3>
               {settings?.venue?.address && (
@@ -180,9 +180,9 @@ export default function WhatsOnPage() {
 
             {/* Quick Links */}
             <div className="text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Quick Links</h3>
+               <h3 className="text-lg font-semibold text-primary mb-2">Quick Links</h3>
               <div className="space-y-1">
-                <a href="/whats-on" className="block text-gray-600 text-sm hover:text-highlight">What's On</a>
+                 <a href="/whats-on" className="block text-gray-600 text-sm hover:text-highlight">What&apos;s On</a>
                 <a href="/admin" className="block text-gray-600 text-sm hover:text-highlight">Admin</a>
                 {settings?.venue?.website && (
                   <a href={settings.venue.website} target="_blank" rel="noopener noreferrer" className="block text-gray-600 text-sm hover:text-blue-600">

@@ -18,11 +18,11 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   ...props
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--highlight)] rounded-full disabled:opacity-50 disabled:pointer-events-none'
+  const baseClasses = 'inline-flex items-center justify-center font-medium transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400 rounded-full disabled:opacity-50 disabled:pointer-events-none'
 
   const variantClasses = {
     default: 'bg-gray-100 hover:bg-gray-200 text-gray-900',
-    primary: 'bg-highlight text-white shadow-lg btn-primary-3d hover:bg-lowlight',
+    primary: 'bg-highlight text-white btn-primary-3d hover:bg-lowlight',
     secondary: 'bg-white text-highlight border-2 border-highlight hover:bg-highlight hover:text-white',
     outline: 'border border-gray-300 bg-transparent hover:bg-gray-50 text-gray-700',
     ghost: 'hover:bg-gray-100 text-gray-700',

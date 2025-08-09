@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans, Poppins } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "../components/providers/auth-provider";
+// Optional external brand stylesheet support via NEXT_PUBLIC_BRAND_STYLESHEET
+const brandStylesheet = process.env.NEXT_PUBLIC_BRAND_STYLESHEET
 import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
@@ -12,6 +15,18 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+
+const poppins = Poppins({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -26,8 +41,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {brandStylesheet ? (
+        <head>
+          <link rel="stylesheet" href={brandStylesheet} />
+        </head>
+      ) : null}
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} ${poppins.variable} antialiased`}
       >
         <AuthProvider>
           {children}

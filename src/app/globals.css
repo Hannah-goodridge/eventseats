@@ -1,21 +1,39 @@
 @import "tailwindcss";
 
+/* Base theme variables with sensible defaults.
+   You can override these in a custom stylesheet loaded via
+   NEXT_PUBLIC_BRAND_STYLESHEET. */
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  /* Brand */
-  --highlight: #39BB9A;     /* primary brand */
-  --lowlight: #1b6452;      /* hover/active */
-  --lowestlight: #034a43;   /* darkest */
+
+  /* Brand palette */
+  --primary: #333647;
+  --secondary: #252734;
+  --tertiary: #555a77;
+  --highlight: #39BB9A;
+  --lowlight: #1b6452;
+  --lowestlight: #034a43;
+  --peach: #F4876E;
+  --yellow: #FFC12A;
+
+  /* Fonts (set by next/font variables) */
+  --font-body: var(--font-body, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif);
+  --font-display: var(--font-display, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
   --color-highlight: var(--highlight);
   --color-lowlight: var(--lowlight);
   --color-lowestlight: var(--lowestlight);
-  --font-sans: var(--font-geist-sans);
+  --color-peach: var(--peach);
+  --color-yellow: var(--yellow);
+  --font-sans: var(--font-body);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -26,21 +44,48 @@
   }
 }
 
+/* Global base styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
 }
 
 /* Brand utilities */
 .text-highlight { color: var(--highlight); }
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.text-lowlight { color: var(--lowlight); }
+.text-lowestlight { color: var(--lowestlight); }
+
 .bg-highlight { background-color: var(--highlight); }
+.bg-primary { background-color: var(--primary); }
+.bg-secondary { background-color: var(--secondary); }
+.bg-tertiary { background-color: var(--tertiary); }
 .bg-lowlight { background-color: var(--lowlight); }
 .bg-lowestlight { background-color: var(--lowestlight); }
+
+.bg-highlight-soft { background-color: color-mix(in srgb, var(--highlight) 12%, white); }
 .border-highlight { border-color: var(--highlight); }
 
-/* 3D button shadow style */
-.btn-primary-3d {
-  box-shadow: 0 6px 14px rgba(57, 187, 154, 0.35), 0 2px 6px rgba(3, 74, 67, 0.15);
-}
+/* Gradient utilities */
+.text-gradient-right { background-image: linear-gradient(-90deg, var(--peach) 0%, var(--yellow) 50%, var(--highlight) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.bg-gradient-right { background: linear-gradient(-90deg, var(--peach) 0%, var(--yellow) 50%, var(--highlight) 100%); }
+.bg-gradient-left { background: linear-gradient(90deg, var(--peach) 0%, var(--yellow) 50%, var(--highlight) 100%); }
+.bg-gradient-top { background: linear-gradient(180deg, var(--peach) 0%, var(--yellow) 50%, var(--highlight) 100%); }
+.bg-gradient-bottom { background: linear-gradient(-180deg, var(--peach) 0%, var(--yellow) 50%, var(--highlight) 100%); }
+
+/* Typography helpers */
+.font-display { font-family: var(--font-display); }
+
+/* Scrollbar & selection to match brand */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--secondary); }
+::-webkit-scrollbar-thumb { background-color: var(--highlight); border-radius: 20px; border: 3px solid var(--secondary); }
+::-webkit-scrollbar-thumb:hover { background: var(--lowlight); }
+::selection { background: var(--highlight); color: var(--primary); }
+::-moz-selection { background: var(--highlight); color: var(--primary); }
+
+/* Button visual enhancement */
+.btn-primary-3d { box-shadow: 0 6px 14px rgba(57, 187, 154, 0.35), 0 2px 6px rgba(3, 74, 67, 0.15); }
 

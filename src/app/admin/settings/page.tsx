@@ -87,6 +87,34 @@ export default function AdminSettingsPage() {
     termsOfServiceUrl: ''
   })
 
+  // Appearance / Theme settings
+  type ThemeKeys = 'primary' | 'secondary' | 'tertiary' | 'highlight' | 'lowlight' | 'lowestlight' | 'peach' | 'yellow' | 'background' | 'foreground'
+  const [themeSettings, setThemeSettings] = useState<Record<ThemeKeys, string>>({
+    primary: '#333647',
+    secondary: '#252734',
+    tertiary: '#555a77',
+    highlight: '#39BB9A',
+    lowlight: '#1b6452',
+    lowestlight: '#034a43',
+    peach: '#F4876E',
+    yellow: '#FFC12A',
+    background: '#ffffff',
+    foreground: '#171717',
+  })
+
+  useEffect(() => {
+    // Load theme from localStorage if present
+    try {
+      const stored = window.localStorage.getItem('eventseats_theme')
+      if (stored) {
+        const parsed = JSON.parse(stored) as Partial<Record<ThemeKeys, string>>
+        setThemeSettings(prev => ({ ...prev, ...parsed }))
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, [])
+
   useEffect(() => {
     if (status === 'loading') return
 
@@ -181,6 +209,50 @@ export default function AdminSettingsPage() {
     }
   }
 
+  const applyThemeToDocument = (t: Record<ThemeKeys, string>) => {
+    const root = document.documentElement
+    root.style.setProperty('--primary', t.primary)
+    root.style.setProperty('--secondary', t.secondary)
+    root.style.setProperty('--tertiary', t.tertiary)
+    root.style.setProperty('--highlight', t.highlight)
+    root.style.setProperty('--lowlight', t.lowlight)
+    root.style.setProperty('--lowestlight', t.lowestlight)
+    root.style.setProperty('--peach', t.peach)
+    root.style.setProperty('--yellow', t.yellow)
+    root.style.setProperty('--background', t.background)
+    root.style.setProperty('--foreground', t.foreground)
+  }
+
+  const handleSaveTheme = () => {
+    try {
+      window.localStorage.setItem('eventseats_theme', JSON.stringify(themeSettings))
+      applyThemeToDocument(themeSettings)
+      alert('Theme saved!')
+    } catch (e) {
+      alert('Failed to save theme')
+    }
+  }
+
+  const handleResetTheme = () => {
+    const defaults = {
+      primary: '#333647',
+      secondary: '#252734',
+      tertiary: '#555a77',
+      highlight: '#39BB9A',
+      lowlight: '#1b6452',
+      lowestlight: '#034a43',
+      peach: '#F4876E',
+      yellow: '#FFC12A',
+      background: '#ffffff',
+      foreground: '#171717',
+    } as Record<ThemeKeys, string>
+    setThemeSettings(defaults)
+    try {
+      window.localStorage.removeItem('eventseats_theme')
+    } catch {}
+    applyThemeToDocument(defaults)
+  }
+
   const handleSave = async () => {
     setIsSaving(true)
     try {
@@ -204,6 +276,7 @@ export default function AdminSettingsPage() {
     { id: 'booking', name: 'Booking Settings', icon: '🎫' },
     { id: 'system', name: 'System Settings', icon: '⚙️' },
     { id: 'links', name: 'External Links', icon: '🔗' },
+    { id: 'appearance', name: 'Appearance', icon: '🎨' },
     { id: 'admin', name: 'Admin Users', icon: '👥' }
   ]
 
@@ -714,6 +787,54 @@ export default function AdminSettingsPage() {
                       {isSaving ? 'Saving...' : 'Save Links'}
                     </Button>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {/* Appearance / Theme */}
+            {activeTab === 'appearance' && (
+              <div className="bg-white rounded-lg shadow p-6">
+                <div className="mb-6">
+                  <h3 className="text-lg font-medium text-gray-900">Branding</h3>
+                  <p className="text-sm text-gray-700">Set your brand colors. These update the marketing and public pages.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {([
+                    ['primary', 'Primary'],
+                    ['secondary', 'Secondary'],
+                    ['tertiary', 'Tertiary'],
+                    ['highlight', 'Highlight'],
+                    ['lowlight', 'Lowlight'],
+                    ['lowestlight', 'Lowest Light'],
+                    ['peach', 'Peach Accent'],
+                    ['yellow', 'Yellow Accent'],
+                    ['background', 'Background'],
+                    ['foreground', 'Foreground'],
+                  ] as [ThemeKeys, string][]) .map(([key, label]) => (
+                    <div key={key} className="space-y-2">
+                      <label className="block text-sm font-medium text-gray-800">{label}</label>
+                      <div className="flex items-center gap-3">
+                        <input
+                          type="color"
+                          value={themeSettings[key]}
+                          onChange={(e) => setThemeSettings(prev => ({ ...prev, [key]: e.target.value }))}
+                          className="w-12 h-10 p-0 border border-gray-300 rounded"
+                          aria-label={`${label} color`}
+                        />
+                        <input
+                          type="text"
+                          value={themeSettings[key]}
+                          onChange={(e) => setThemeSettings(prev => ({ ...prev, [key]: e.target.value }))}
+                          className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-800 focus:ring-2 focus:ring-[var(--highlight)] focus:border-[var(--highlight)]"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex justify-end gap-3 mt-8">
+                  <Button variant="outline" onClick={handleResetTheme}>Reset to defaults</Button>
+                  <Button variant="primary" onClick={handleSaveTheme}>Save Theme</Button>
                 </div>
               </div>
             )}
