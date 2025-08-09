@@ -1,4 +1,5 @@
 import { getServerSupabase } from './supabase'
+import { randomUUID } from 'crypto'
 
 export type TicketType = 'ADULT' | 'CHILD' | 'CONCESSION'
 
@@ -22,9 +23,11 @@ export async function ensureCustomer(email: string, firstName?: string, lastName
   const { data: existing } = await supabase.from('customers').select('id').eq('email', email).single()
   if (existing?.id) return existing.id
   const now = new Date().toISOString()
+  const customerId = randomUUID()
   const { data, error } = await supabase
     .from('customers')
     .insert({
+      id: customerId,
       email,
       firstName: firstName || 'Customer',
       lastName: lastName || '',
