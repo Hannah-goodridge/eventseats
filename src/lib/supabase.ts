@@ -10,6 +10,18 @@ export const createServerSupabaseClient = () => {
   return createClient(supabaseUrl, supabaseAnonKey)
 }
 
+// Service role client for trusted server-side operations (webhooks, server pages)
+// Falls back to anon in non-prod/test environments if missing
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || supabaseAnonKey
+export const supabaseService = createClient(supabaseUrl, serviceRoleKey)
+
+export const getServerSupabase = () => {
+  // If a service role key is present, prefer it; otherwise fallback to anon for simplicity
+  return serviceRoleKey && serviceRoleKey !== supabaseAnonKey
+    ? supabaseService
+    : supabase
+}
+
 // Types for your database
 export type Database = {
   public: {

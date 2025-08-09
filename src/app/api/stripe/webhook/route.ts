@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { supabase } from '@/lib/supabase'
+import { getServerSupabase } from '@/lib/supabase'
 
 export const runtime = 'nodejs'
 
@@ -18,6 +18,7 @@ export async function POST(request: NextRequest) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
   try {
+    const supabase = getServerSupabase()
     const payload = await request.text()
     const signature = request.headers.get('stripe-signature') as string
 
@@ -53,6 +54,7 @@ export async function POST(request: NextRequest) {
     const createBookingFromMetadata = async (meta: any, paymentIntentId: string) => {
       const performanceId = meta.performanceId
       const showId = meta.showId
+      const bookingId = meta.bookingId as string | undefined
       const seats = JSON.parse(meta.seatsJson || '[]') as Array<{ seatId: string; ticketType: 'ADULT' | 'CHILD' | 'CONCESSION' }>
       const email = meta.customerEmail
       const firstName = meta.customerFirstName
@@ -84,38 +86,63 @@ export async function POST(request: NextRequest) {
       // Generate bookingNumber
       const bookingNumber = `BK${Date.now().toString().slice(-6)}${Math.random().toString(36).substr(2, 3).toUpperCase()}`
 
-      // Create booking (PAID immediately since PI succeeded)
-      const { data: booking, error: bookingErr } = await supabase
-        .from('bookings')
-        .insert({
-          bookingNumber,
-          status: 'PAID',
-          totalAmount,
-          bookingFee: 0,
-          performanceId,
-          showId,
-          customerId,
-          stripePaymentIntentId: paymentIntentId,
-          paidAt: now,
-          createdAt: now,
-          updatedAt: now
-        })
-        .select('*')
-        .single()
+      // If we pre-reserved a booking, update it; otherwise create fresh
+      let booking
+      let bookingErr
+      if (bookingId) {
+        const upd = await supabase
+          .from('bookings')
+          .update({
+            status: 'PAID',
+            totalAmount,
+            bookingFee: 0,
+            customerId,
+            stripePaymentIntentId: paymentIntentId,
+            paidAt: now,
+            updatedAt: now,
+          })
+          .eq('id', bookingId)
+          .select('*')
+          .single()
+        booking = upd.data
+        bookingErr = upd.error as any
+      } else {
+        const ins = await supabase
+          .from('bookings')
+          .insert({
+            bookingNumber,
+            status: 'PAID',
+            totalAmount,
+            bookingFee: 0,
+            performanceId,
+            showId,
+            customerId,
+            stripePaymentIntentId: paymentIntentId,
+            paidAt: now,
+            createdAt: now,
+            updatedAt: now
+          })
+          .select('*')
+          .single()
+        booking = ins.data
+        bookingErr = ins.error as any
+      }
 
       if (bookingErr) throw bookingErr
 
-      // Insert booking_items
-      const items = seats.map((s) => ({
-        ticketType: s.ticketType,
-        price: priceFor(s.ticketType),
-        bookingId: booking.id,
-        seatId: s.seatId,
-        createdAt: now,
-      }))
+      // If booking items were not pre-reserved, insert now
+      if (!bookingId) {
+        const items = seats.map((s) => ({
+          ticketType: s.ticketType,
+          price: priceFor(s.ticketType),
+          bookingId: booking.id,
+          seatId: s.seatId,
+          createdAt: now,
+        }))
 
-      const { error: itemsErr } = await supabase.from('booking_items').insert(items)
-      if (itemsErr) throw itemsErr
+        const { error: itemsErr } = await supabase.from('booking_items').insert(items)
+        if (itemsErr) throw itemsErr
+      }
     }
 
     switch (event.type) {

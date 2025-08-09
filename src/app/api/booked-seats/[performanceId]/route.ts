@@ -8,7 +8,7 @@ export async function GET(
   try {
     const { performanceId } = await params
 
-    // Fetch all confirmed/paid bookings for this performance with seat details
+    // Fetch all reserved/confirmed/paid/check-in bookings for this performance with seat details
     const { data: bookedSeats, error } = await supabase
       .from('booking_items')
       .select(`
@@ -26,7 +26,7 @@ export async function GET(
         )
       `)
       .eq('bookings.performanceId', performanceId)
-      .in('bookings.status', ['CONFIRMED', 'PAID', 'CHECKED_IN'])
+      .in('bookings.status', ['PENDING', 'CONFIRMED', 'PAID', 'CHECKED_IN'])
 
     if (error) {
       console.error('Error fetching booked seats:', error)
