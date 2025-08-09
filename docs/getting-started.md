@@ -16,7 +16,7 @@ Before you start, make sure you have:
 ```bash
 # Clone the repository
 git clone https://github.com/Hannah-goodridge/eventseats.git
-cd show-bookings-system
+cd eventseats
 
 # Run the setup script
 npm run setup
@@ -61,9 +61,11 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_random_secret_here
 
-# Optional: Stripe for payments (work in progress)
+# Optional: Stripe for payments (hosted Checkout)
 STRIPE_SECRET_KEY=sk_test_...
 STRIPE_PUBLISHABLE_KEY=pk_test_...
+# Required for webhooks (local: from Stripe CLI; prod: from Dashboard)
+STRIPE_WEBHOOK_SECRET=whsec_...
 ```
 
 **💡 Tip:** For `NEXTAUTH_SECRET`, generate a random string:
@@ -143,8 +145,8 @@ Go to [http://localhost:3000/admin/login](http://localhost:3000/admin/login) to 
 
 ### Customize Your Installation
 
-- **Branding:** Update colors, logos, and text
-- **Payment Processing:** Set up Stripe for credit card payments (work in progress). See `docs/payments/stripe.md`.
+- **Branding:** Update colors, logos, and text. You can also provide your own stylesheet via `NEXT_PUBLIC_BRAND_STYLESHEET=/brand.css` to override CSS variables.
+- **Payment Processing:** Set up Stripe for credit card payments. See `docs/payments/stripe.md`.
 - **Email Notifications:** Configure email settings for confirmations
 - **Custom Domain:** Deploy to your own domain
 

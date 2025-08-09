@@ -20,7 +20,7 @@ export default function MarketingPage() {
             <nav className="hidden md:flex space-x-8">
               <a href="#features" className="text-gray-500 hover:text-lowestlight">Features</a>
               <a href="#pricing" className="text-gray-500 hover:text-lowestlight">Pricing <span className="text-xs" style={{ backgroundColor: 'color-mix(in srgb, var(--yellow) 20%, white)', color: 'color-mix(in srgb, var(--yellow) 70%, black)' }}>Soon</span></a>
-              <a href="#docs" className="text-gray-500 hover:text-lowestlight">Documentation</a>
+              <a href="https://github.com/Hannah-goodridge/eventseats/blob/main/docs/getting-started.md" className="text-gray-500 hover:text-lowestlight">Documentation</a>
               <a href="/whats-on" className="text-highlight hover:text-lowlight font-medium">What&apos;s On</a>
               <a href="https://github.com/Hannah-goodridge/eventseats" className="text-gray-500 hover:text-lowestlight">GitHub</a>
             </nav>
@@ -40,10 +40,10 @@ export default function MarketingPage() {
       <main>
         <div className="relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32">
-                        <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-primary sm:text-7xl">
-              Event Seat Booking
-            <span className="relative whitespace-nowrap text-highlight">
-                <span className="relative"> Made Simple</span>
+                        <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-primary sm:text-7xl flex flex-col items-center">
+              <span>Event Seat Booking </span>
+              <span className="text-highlight font-bold">
+                Made Simple
               </span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-gray-700">

@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function GlobalError({ error, reset }: { error: Error & { digest?: string }, reset: () => void }) {
   return (
-    <html>
+    <html lang="en">
       <body>
         <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
           <div className="max-w-lg w-full bg-white border border-red-200 rounded-lg shadow p-6 text-center">
