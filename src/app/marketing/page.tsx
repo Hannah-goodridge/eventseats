@@ -315,12 +315,8 @@ export default function MarketingPage() {
                     <p className="text-sm text-blue-800 font-medium">💬 Available Now</p>
                     <p className="text-xs text-blue-700 mt-1">Custom solutions & consultation</p>
                   </div>
-                  <p className="mt-8">
-                    <span className="text-4xl font-extrabold text-gray-900">Custom</span>
-                  </p>
-                   <Button variant="outline" className="mt-8 w-full border-highlight text-lowlight hover:bg-highlight hover:text-white">
-                    <a href="mailto:hello@hannahgoodridge.dev">Contact Us</a>
-                  </Button>
+
+
                 </div>
                 <div className="pt-6 pb-8 px-6">
                    <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">What&apos;s included</h3>
@@ -431,7 +427,7 @@ export default function MarketingPage() {
                 <ul className="mt-4 space-y-2">
                   <li><a href="/docs" className="text-gray-300 hover:text-white text-sm">Documentation</a></li>
                   <li><a href="https://github.com/hannahgoodridge/show-bookings-system" className="text-gray-300 hover:text-white text-sm">GitHub</a></li>
-                  <li><a href="mailto:hello@hannahgoodridge.dev" className="text-gray-300 hover:text-white text-sm">Support</a></li>
+
                 </ul>
               </div>
             </div>

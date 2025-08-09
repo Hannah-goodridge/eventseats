@@ -326,9 +326,6 @@ Contributors are recognized in several ways:
 - Publishing private information
 - Any conduct inappropriate in a professional setting
 
-### Enforcement
-
-Instances of unacceptable behavior may be reported to hello@hannahgoodridge.dev. All complaints will be reviewed and investigated promptly and fairly.
 
 ## 🎯 Contribution Ideas
 
@@ -366,4 +363,4 @@ Every contribution, no matter how small, makes EventSeats better for everyone. W
 
 ---
 
-**Questions?** Feel free to ask in [GitHub Discussions](https://github.com/Hannah-goodridge/eventseats/discussions) or email [hello@hannahgoodridge.dev](mailto:hello@hannahgoodridge.dev).
+**Questions?** Feel free to ask in [GitHub Discussions](https://github.com/Hannah-goodridge/eventseats/discussions)

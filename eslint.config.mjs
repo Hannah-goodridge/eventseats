@@ -13,14 +13,13 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     rules: {
-      // Disable some rules temporarily for faster development
-      "@typescript-eslint/no-explicit-any": "warn",
+      // Relax some rules for faster development; tighten in CI if needed
       "@typescript-eslint/no-unused-vars": "warn",
       "react/no-unescaped-entities": "warn",
       "@next/next/no-html-link-for-pages": "warn",
       "react-hooks/exhaustive-deps": "warn",
-      // Keep these as errors
-      "@typescript-eslint/no-explicit-any": "off" // Allow any for rapid development
+      // Allow any during rapid development (consider raising later)
+      "@typescript-eslint/no-explicit-any": "off"
     }
   }
 ];

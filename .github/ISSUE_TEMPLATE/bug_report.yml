@@ -1,0 +1,39 @@
+name: Bug report
+description: Create a report to help us improve
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug description
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How can we reproduce the behavior?
+      value: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version/commit
+      placeholder: e.g. v0.1.0 or commit hash
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: OS/Browser/Node version
+

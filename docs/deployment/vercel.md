@@ -18,7 +18,7 @@ Deploy your EventSeats booking system to Vercel with Supabase database.
 
 ```bash
 git clone https://github.com/hannah-goodridge/eventseats.git
-cd show-bookings-system
+cd eventseats
 ```
 
 ### 2. Set Up Database

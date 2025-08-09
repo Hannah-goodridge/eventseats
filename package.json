@@ -2,17 +2,24 @@
   "name": "eventseats",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
     "test": "vitest run --reporter=dot",
     "test:watch": "vitest",
     "setup": "node scripts/setup.js",
     "seed": "tsx scripts/seed-admin.ts",
-    "setup-demo": "tsx scripts/seed-admin.ts"
+    "setup-demo": "tsx scripts/seed-admin.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -59,6 +66,7 @@
     "eslint-config-next": "15.4.6",
     "jsdom": "^26.1.0",
     "msw": "^2.6.6",
+    "prettier": "^3.3.3",
     "tailwindcss": "^4",
     "tsx": "^4.20.3",
     "typescript": "^5",

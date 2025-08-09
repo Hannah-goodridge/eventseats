@@ -350,7 +350,6 @@ export default function RootLayout({ children }) {
 
 - 📚 **Documentation:** Full guides and API reference
 - 💬 **GitHub Issues:** Technical problems and bugs
-- 📧 **Email Support:** hello@hannahgoodridge.dev
 - 🔍 **Discord/Community:** Real-time help from other users
 
 ---

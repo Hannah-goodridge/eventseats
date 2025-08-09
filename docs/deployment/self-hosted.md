@@ -165,7 +165,7 @@ http {
 ```bash
 # Clone your repository
 git clone https://github.com/hannah-goodridge/eventseats.git
-cd show-bookings-system
+cd eventseats
 
 # Create environment file
 cp .env.example .env
@@ -218,7 +218,7 @@ GRANT ALL PRIVILEGES ON DATABASE show_bookings TO booking_user;
 ```bash
 # Clone repository
 git clone https://github.com/hannah-goodridge/eventseats.git
-cd show-bookings-system
+cd eventseats
 
 # Install dependencies
 npm install

@@ -11,6 +11,7 @@ Before you start, make sure you have:
 - **Git** ([Download here](https://git-scm.com/))
 - **Supabase account** ([Sign up free](https://supabase.com/))
 
+
 ### Step 1: Get the Code
 
 ```bash
@@ -85,7 +86,7 @@ You have two options:
 4. Click "Run"
 5. Then copy and paste the contents of `docs/setup-demo-user.sql`
 6. Click "Run" again
-7. If you have an existing database, also run `scripts/update-venue-fields.sql` to add missing venue fields
+7. If you have an existing database, you can re-run the SQL to ensure the latest schema.
 
 #### Option B: Use the TypeScript Seed Script
 

@@ -26,7 +26,7 @@ Built for organizations with small budgets but big dreams. Professional booking 
 ```bash
 # Clone the repository
 git clone https://github.com/Hannah-goodridge/eventseats.git
-cd show-bookings-system
+ cd eventseats
 
 # Install dependencies
 npm install
@@ -72,8 +72,8 @@ Visit [http://localhost:3000](http://localhost:3000) to see your booking system!
 ### Step 1: Clone and Install
 
 ```bash
-git clone https://github.com/Hannah-goodridge/eventseats.git
-cd show-bookings-system
+ git clone https://github.com/Hannah-goodridge/eventseats.git
+ cd eventseats
 npm install
 ```
 
@@ -209,8 +209,8 @@ We love contributions! EventSeats is built by the community, for the community.
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/show-bookings-system.git
-cd show-bookings-system
+ git clone https://github.com/YOUR_USERNAME/eventseats.git
+ cd eventseats
 
 # Add upstream remote
 git remote add upstream https://github.com/Hannah-goodridge/eventseats.git
@@ -294,7 +294,7 @@ Special thanks to all **[contributors](https://github.com/Hannah-goodridge/event
 
 ### One-Click Deploy Options
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/hannah-goodridge/eventseats)
+ [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/hannah-goodridge/eventseats)
 
 [![Deploy to Railway](https://railway.app/button.svg)](https://railway.app/template/xxx)
 
@@ -307,7 +307,7 @@ Special thanks to all **[contributors](https://github.com/Hannah-goodridge/event
 1. **Clone the repository**
    ```bash
    git clone https://github.com/hannah-goodridge/eventseats.git
-   cd show-bookings-system
+    cd eventseats
    ```
 
 2. **Install dependencies**
@@ -376,14 +376,14 @@ Special thanks to all **[contributors](https://github.com/Hannah-goodridge/event
 
 ## License
 
-MIT License - see [LICENSE](./LICENSE) for details.
+ MIT License - see [LICENSE](./LICENSE) for details.
 
 ## Support the Project
 
 If this project helps your drama group, consider:
 - ⭐ Starring the repository
 - 🐛 Reporting bugs or suggesting features
-- 💝 [Sponsoring development](https://github.com/sponsors/yourusername)
+ - 💝 [Sponsoring development](https://github.com/sponsors/hannahgoodridge)
 - 🗣️ Sharing with other drama groups
 
 ---

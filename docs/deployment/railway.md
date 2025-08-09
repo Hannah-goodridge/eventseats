@@ -19,7 +19,7 @@ Deploy EventSeats software to Railway with their integrated PostgreSQL database.
 2. Sign in with GitHub
 3. Click "New Project"
 4. Select "Deploy from GitHub repo"
-5. Choose your show-bookings-system repository
+5. Choose your eventseats repository
 
 ### 2. Add PostgreSQL Database
 
