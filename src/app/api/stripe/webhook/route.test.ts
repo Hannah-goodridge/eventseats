@@ -28,7 +28,7 @@ vi.mock('@/lib/supabase', () => {
   }
 
   return {
-    supabase: {
+    getServerSupabase: () => ({
       from: (table: string) => {
         switch (table) {
           case 'shows': return showsBuilder()
@@ -38,7 +38,7 @@ vi.mock('@/lib/supabase', () => {
           default: throw new Error(`Unexpected table ${table}`)
         }
       },
-    },
+    }),
   }
 })
 

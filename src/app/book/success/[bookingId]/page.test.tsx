@@ -3,7 +3,7 @@ import React from 'react'
 import Page from './page'
 
 vi.mock('@/lib/supabase', () => ({
-  supabase: {
+  getServerSupabase: () => ({
     from: () => ({
       select: () => ({ eq: () => ({ limit: async () => ({ data: [
         {
@@ -12,7 +12,7 @@ vi.mock('@/lib/supabase', () => ({
         }
       ], error: null }) }) })
     })
-  }
+  })
 }))
 
 describe('Success page', () => {
