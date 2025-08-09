@@ -109,11 +109,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode; theme?: Partia
       setVar('foreground', merged.foreground)
     }
 
-    apply(theme)
+    apply(theme || {})
 
     const onStorage = (e: StorageEvent) => {
       if (e.key === 'eventseats_theme') {
-        apply(theme)
+        apply(theme || {})
       }
     }
 
