@@ -246,7 +246,7 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)** for detailed guidelines.
 ### Show Your Support
 - ⭐ **Star this repository** if it helps you!
 - 🐦 **Share on social media** with #EventSeats
-- 💝 **[Sponsor the project](https://github.com/sponsors/hannahgoodridge)**
+- 💝 **[Sponsor the project](https://github.com/sponsors/hannah-goodridge)**
 
 ---
 
