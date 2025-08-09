@@ -366,7 +366,8 @@ export default function MarketingPage() {
                 </h2>
                 <p className="mt-3 max-w-3xl text-lg text-emerald-50">
                   Join hundreds of theatre groups using SeatWise to manage their bookings.
-                  Start with our free 30-day trial or download the open-source version.
+                  Start with our free open-source version.
+                  Trial version coming soon!
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Button variant="outline" size="lg" className="bg-white text-[#1b6452] hover:bg-gray-50">
