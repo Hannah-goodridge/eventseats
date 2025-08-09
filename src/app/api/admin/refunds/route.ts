@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'No Stripe payment associated with this booking' }, { status: 400 })
     }
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2024-06-20' })
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
     // Compute full amount in minor units
     const currency = 'GBP'

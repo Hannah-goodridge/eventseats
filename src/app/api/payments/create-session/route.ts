@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Calculated total is zero' }, { status: 400 })
     }
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2024-06-20' })
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
     const appUrl = process.env.APP_URL || 'http://localhost:3000'
     const successUrl = `${appUrl}/book/success/{CHECKOUT_SESSION_ID}` // we will resolve in success page

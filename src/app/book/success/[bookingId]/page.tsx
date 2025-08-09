@@ -4,6 +4,7 @@ import { NextRequest } from 'next/server'
 import Link from 'next/link'
 
 async function fetchBooking(bookingId: string) {
+  // Avoid PostgREST single-object coercion issues by selecting as an array and picking the first row
   const { data, error } = await supabase
     .from('bookings')
     .select(`
@@ -18,10 +19,12 @@ async function fetchBooking(bookingId: string) {
       shows ( id, title )
     `)
     .eq('id', bookingId)
-    .single()
+    .limit(1)
 
   if (error) throw new Error(error.message)
-  return data
+  const booking = Array.isArray(data) ? data[0] : data
+  if (!booking) throw new Error('Booking not found')
+  return booking
 }
 
 export default async function BookingSuccessPage({ params }: { params: Promise<{ bookingId: string }> }) {

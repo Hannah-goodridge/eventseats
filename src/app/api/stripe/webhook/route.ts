@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: 'Stripe is not configured' }, { status: 500 })
   }
 
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2024-06-20' })
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
   try {
     const payload = await request.text()
