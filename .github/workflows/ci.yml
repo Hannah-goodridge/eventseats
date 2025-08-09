@@ -19,8 +19,11 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
+      - name: Install dependencies (include optional deps for Rollup native binaries)
+        run: npm install --no-audit --no-fund --include=optional
+
+      - name: Ensure Rollup native binary for Linux (CI-only workaround)
+        run: npm install -D @rollup/rollup-linux-x64-gnu@^4 --no-audit --no-fund
 
       - name: Type check
         run: npm run type-check
