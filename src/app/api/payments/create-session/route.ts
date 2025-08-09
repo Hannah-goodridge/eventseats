@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Stripe from 'stripe'
 import { getServerSupabase } from '@/lib/supabase'
 import { randomUUID } from 'crypto'
+import { getStripe } from '@/lib/stripe'
+import { calculateTotalMinor, ensureCustomer } from '@/lib/bookings'
 
 export async function POST(request: NextRequest) {
   try {
@@ -37,55 +38,17 @@ export async function POST(request: NextRequest) {
     const show = (perf as any).shows
     const title = show?.title || 'Performance'
 
-    // Compute total using server-side prices (ignore any client price input)
-    const priceFor = (ticketType: string) => {
-      switch (ticketType) {
-        case 'ADULT': return Number(show?.adultPrice || 0)
-        case 'CHILD': return Number(show?.childPrice || 0)
-        case 'CONCESSION': return Number(show?.concessionPrice || 0)
-        default: return 0
-      }
-    }
-
     const currency = 'GBP'
-    const seatItems = seats.map(s => ({
-      ticketType: s.ticketType,
-      unitAmountMinor: Math.round(priceFor(s.ticketType) * 100),
-      seatId: s.seatId,
-    }))
-
-    const totalMinor = seatItems.reduce((sum, i) => sum + i.unitAmountMinor, 0)
+    const totalMinor = calculateTotalMinor(
+      { adult: Number(show?.adultPrice || 0), child: Number(show?.childPrice || 0), concession: Number(show?.concessionPrice || 0) },
+      seats
+    )
     if (totalMinor <= 0) {
       return NextResponse.json({ success: false, error: 'Calculated total is zero' }, { status: 400 })
     }
 
     // Find or create customer (customerId is required by schema)
-    const { data: existingCustomer } = await supabase
-      .from('customers')
-      .select('id')
-      .eq('email', customer.email)
-      .single()
-
-    let customerId = existingCustomer?.id as string | null
-    if (!customerId) {
-      const { data: createdCust, error: custErr } = await supabase
-        .from('customers')
-        .insert({
-          email: customer.email,
-          firstName: customer.firstName || 'Customer',
-          lastName: customer.lastName || '',
-          phone: customer.phone || null,
-          country: 'GB',
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-        })
-        .select('id')
-        .single()
-      if (custErr) {
-        return NextResponse.json({ success: false, error: `Failed to create customer: ${custErr.message}` }, { status: 500 })
-      }
-      customerId = createdCust.id
-    }
+    const customerId = await ensureCustomer(customer.email, customer.firstName, customer.lastName, customer.phone)
 
     // Pre-create a PENDING booking and booking_items to reserve seats
     const now = new Date().toISOString()
@@ -115,11 +78,11 @@ export async function POST(request: NextRequest) {
 
     // Insert booking items for reservation
     const { error: itemsErr } = await supabase.from('booking_items').insert(
-      seatItems.map((i) => ({
+      seats.map((s) => ({
         id: randomUUID(),
-        seatId: i.seatId,
-        ticketType: i.ticketType,
-        price: i.unitAmountMinor / 100,
+        seatId: s.seatId,
+        ticketType: s.ticketType,
+        price: 0, // final price not needed here, purely for reservation (actual price captured on webhook)
         bookingId,
         createdAt: now,
       }))
@@ -130,7 +93,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: `Failed to reserve seats: ${itemsErr.message}` }, { status: 500 })
     }
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+    const stripe = getStripe()
 
     const appUrl = process.env.APP_URL || 'http://localhost:3000'
     const successUrl = `${appUrl}/book/success/{CHECKOUT_SESSION_ID}?bookingId=${bookingId}` // include bookingId for fallback

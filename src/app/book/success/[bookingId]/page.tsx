@@ -14,6 +14,7 @@ async function fetchBooking(identifier: string) {
       totalAmount,
       bookingFee,
       status,
+      createdAt,
       qrCodeData,
       stripePaymentIntentId,
       customers ( firstName, lastName, email ),
@@ -64,6 +65,8 @@ export default async function BookingSuccessPage({ params, searchParams }: { par
 
   const show = (booking as any).shows
   const perf = (booking as any).performances
+
+  const bookingDateRaw = (booking as any).createdAt || (booking as any).paidAt || new Date().toISOString()
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -118,7 +121,7 @@ export default async function BookingSuccessPage({ params, searchParams }: { par
                 </div>
                 <div className="flex justify-between items-start">
                   <span className="text-sm font-medium text-gray-600">Booking Date</span>
-                  <span className="text-sm text-gray-900">{new Date(booking.createdAt as any).toLocaleString('en-GB')}</span>
+                  <span className="text-sm text-gray-900">{new Date(bookingDateRaw as any).toLocaleString('en-GB')}</span>
                 </div>
               </div>
               <div className="border-b border-gray-200 pb-4">

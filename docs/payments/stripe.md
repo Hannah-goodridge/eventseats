@@ -24,25 +24,25 @@ Notes:
 - Keep `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET` server-only.
 - If you fork this project, never commit real keys.
 
-## 2) Recommended flow (Checkout Session)
+## 2) Flow implemented (Checkout Session)
 
-- Create a booking in "pending" with reserved seats and total price.
-- Server creates a Checkout Session (Stripe-hosted page) and redirects the customer.
-- On webhook `checkout.session.completed` or `payment_intent.succeeded`, mark booking as "confirmed" and store the `payment_intent` ID.
-- On cancel/expired/failure, release seats.
+- Server creates a PENDING booking with reserved seats, then creates a Checkout Session and redirects the customer.
+- Webhook finalizes to PAID on success (or creates if not pre-reserved), and should release seats on failure/expired.
+- Success page supports `{CHECKOUT_SESSION_ID}` and falls back to `?bookingId=` to handle webhook delay.
 
 ### Server endpoints (expected)
 
 - `POST /api/payments/create-session`
-  - Input: `{ bookingId }` (from your app)
-  - Server loads booking, validates seats and computes amount server-side
-  - Creates Checkout Session with `mode: payment`, `line_items`, `success_url`, `cancel_url`, and `metadata: { bookingId }`
-  - Responds with `session.url` for redirect
+  - Input: `{ performanceId, customer, seats }`
+  - Server validates performance, computes total from server-side prices, ensures `customers` row
+  - Pre-creates PENDING booking and `booking_items` for seat holds
+  - Creates Checkout Session with `metadata: { bookingId, performanceId, showId, seatsJson }`
+  - Returns `session.url`
 
 - `POST /api/stripe/webhook`
   - Verifies Stripe signature using `STRIPE_WEBHOOK_SECRET`
   - Handles events:
-    - `checkout.session.completed` or `payment_intent.succeeded`: confirm booking, persist `payment_intent`
+    - `checkout.session.completed` or `payment_intent.succeeded`: finalize booking (update PENDING to PAID), persist `payment_intent`
     - `payment_intent.payment_failed`: mark failed and release seats
     - `checkout.session.expired`: release seats
 
