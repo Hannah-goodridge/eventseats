@@ -96,7 +96,7 @@ railway run npm run setup-demo
 1. In Railway project settings, go to "Domains"
 2. Add your custom domain
 3. Update DNS records as instructed
-4. Update `NEXTAUTH_URL` and `APP_URL` environment variables
+4. Set `NEXTAUTH_URL` to your public Railway URL. `APP_URL` is optional and used only as a fallback.
 
 ## Railway Features
 

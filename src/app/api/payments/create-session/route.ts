@@ -95,7 +95,8 @@ export async function POST(request: NextRequest) {
 
     const stripe = getStripe()
 
-    const appUrl = process.env.APP_URL || 'http://localhost:3000'
+    // Use NEXTAUTH_URL as the canonical base URL; APP_URL remains optional for backwards compatibility
+    const appUrl = process.env.NEXTAUTH_URL || process.env.APP_URL || 'http://localhost:3000'
     const successUrl = `${appUrl}/book/success/{CHECKOUT_SESSION_ID}?bookingId=${bookingId}` // include bookingId for fallback
     const cancelUrl = `${appUrl}/book/${show.id}/${performanceId}?payment=cancelled`
 
