@@ -63,7 +63,7 @@ NEXTAUTH_SECRET=your_random_secret_here
 
 # Optional: Stripe for payments (work in progress)
 STRIPE_SECRET_KEY=sk_test_...
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_PUBLISHABLE_KEY=pk_test_...
 ```
 
 **💡 Tip:** For `NEXTAUTH_SECRET`, generate a random string:
@@ -144,7 +144,7 @@ Go to [http://localhost:3000/admin/login](http://localhost:3000/admin/login) to 
 ### Customize Your Installation
 
 - **Branding:** Update colors, logos, and text
-- **Payment Processing:** Set up Stripe for credit card payments (work in progress)
+- **Payment Processing:** Set up Stripe for credit card payments (work in progress). See `docs/payments/stripe.md`.
 - **Email Notifications:** Configure email settings for confirmations
 - **Custom Domain:** Deploy to your own domain
 

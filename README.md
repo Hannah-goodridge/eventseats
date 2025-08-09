@@ -97,7 +97,7 @@ NEXTAUTH_SECRET=your_secret_key
 
 # Stripe (optional for payments - work in progress)
 STRIPE_SECRET_KEY=sk_test_...
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_PUBLISHABLE_KEY=pk_test_...
 ```
 
 ### Step 3: Database Setup
@@ -163,6 +163,9 @@ npm start
 - **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
 - **[API Documentation](docs/api.md)** - REST API reference (coming soon)
 - **[Database Schema](docs/database.md)** - Database structure (coming soon)
+
+### Payments
+- **[Stripe Checkout Guide](docs/payments/stripe.md)** - Accept payments without handling card data
 
 ---
 

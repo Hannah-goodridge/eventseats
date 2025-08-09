@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import { BookingPage } from '../../../../components/booking/booking-page'
-import { Show, Performance, SeatingLayout, BookingFormData, SeatSelection, ShowStatus } from '../../../../types'
+import { Show, Performance, SeatingLayout, BookingFormData, SeatSelection, ShowStatus, TicketType } from '../../../../types'
 
 interface ApiShow {
   id: string
@@ -28,6 +28,7 @@ interface ApiShow {
 
 export default function BookingRoute() {
   const params = useParams()
+  const searchParams = useSearchParams()
   const { showId, performanceId } = params
 
   const [show, setShow] = useState<Show | null>(null)
@@ -36,6 +37,9 @@ export default function BookingRoute() {
   const [bookedSeats, setBookedSeats] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  const paymentStatus = searchParams?.get('payment')
+  const bookingIdFromQuery = searchParams?.get('bookingId')
 
   useEffect(() => {
     const fetchBookingData = async () => {
@@ -138,10 +142,7 @@ export default function BookingRoute() {
         const bookedSeatsData = await bookedSeatsResponse.json()
 
         if (bookedSeatsData.success) {
-          // Use seat IDs (UUIDs) for the booking component - this is what SeatGrid expects
           setBookedSeats(bookedSeatsData.data.bookedSeatIds)
-          console.log('📍 Booked seats for this performance:', bookedSeatsData.data.bookedSeatDisplays)
-          console.log('📍 Booked seat IDs:', bookedSeatsData.data.bookedSeatIds)
         } else {
           console.warn('Failed to fetch booked seats, starting with empty list')
           setBookedSeats([])
@@ -160,76 +161,64 @@ export default function BookingRoute() {
     }
   }, [showId, performanceId])
 
-    const handleCompleteBooking = async (bookingData: BookingFormData, selectedSeats: SeatSelection[]): Promise<any> => {
-    console.log('Booking submitted:', { bookingData, selectedSeats })
-
+  const handleCompleteBooking = async (bookingData: BookingFormData, selectedSeats: SeatSelection[]): Promise<any> => {
     try {
-      // Prepare booking request
-      const bookingRequest = {
+      const payload = {
         performanceId: performanceId as string,
         customer: {
           firstName: bookingData.firstName,
           lastName: bookingData.lastName,
           email: bookingData.email,
           phone: bookingData.phone,
-          emailOptIn: bookingData.emailOptIn || false,
-          smsOptIn: bookingData.smsOptIn || false,
-          address: bookingData.address,
-          city: bookingData.city,
-          postcode: bookingData.postcode,
-          country: bookingData.country || 'GB'
         },
-        seats: selectedSeats.map(seat => ({
-          seatId: seat.seat.id,
-          ticketType: seat.ticketType,
-          price: seat.price
+        seats: selectedSeats.map(s => ({
+          seatId: s.seat.id,
+          ticketType: s.ticketType as TicketType,
         })),
-        accessibilityRequirements: bookingData.accessibilityRequirements,
-        specialRequests: bookingData.specialRequests,
-        totalAmount: selectedSeats.reduce((total, seat) => total + seat.price, 0),
-        bookingFee: 0
       }
 
-      console.log('💳 Submitting booking request:', bookingRequest)
-
-      // Submit booking to API
-      const response = await fetch('/api/bookings', {
+      const sessionRes = await fetch('/api/payments/create-session', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(bookingRequest)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       })
+      const sessionData = await sessionRes.json()
 
-      const result = await response.json()
-
-                  if (result.success) {
-        console.log('✅ Booking created successfully:', result.data.booking.bookingNumber)
-
-        // Update booked seats immediately to prevent double booking
-        const updatedBookedSeatsResponse = await fetch(`/api/booked-seats/${performanceId}`)
-        const updatedBookedSeatsData = await updatedBookedSeatsResponse.json()
-
-        if (updatedBookedSeatsData.success) {
-          setBookedSeats(updatedBookedSeatsData.data.bookedSeatIds)
-        }
-
-        // Return booking result data for confirmation page
-        return {
-          bookingNumber: result.data.booking.bookingNumber,
-          bookingId: result.data.booking.id,
-          qrCodeData: result.data.booking.qrCodeData,
-          createdAt: result.data.booking.createdAt
-        }
-      } else {
-        console.error('❌ Booking failed:', result.error)
-        throw new Error(result.error || 'Booking failed')
+      if (!sessionData.success || !sessionData.url) {
+        console.error('Stripe session creation failed:', sessionData)
+        throw new Error(sessionData.error || 'Failed to create payment session')
       }
 
-    } catch (error) {
-      console.error('❌ Error submitting booking:', error)
+      window.location.href = sessionData.url
+      return { redirectingToPayment: true }
+    } catch (error: any) {
+      console.error('❌ Error starting payment:', error)
+      alert(error?.message || 'Payment could not be initiated. Please try again.')
       throw error
     }
+  }
+
+  const Banner = () => {
+    if (!paymentStatus) return null
+    if (paymentStatus === 'success') {
+      return (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-4 rounded-md bg-green-50 border border-green-200 p-4 text-green-800">
+            Payment successful{bookingIdFromQuery ? ` for booking ${bookingIdFromQuery}` : ''}. Check your email for confirmation.
+          </div>
+        </div>
+      )
+    }
+    if (paymentStatus === 'cancelled') {
+      return (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-4 rounded-md bg-yellow-50 border border-yellow-200 p-4 text-yellow-800">
+            Payment was cancelled. Your seats may be held briefly; please try again.
+          </div>
+        </div>
+      )
+    }
+    return null
   }
 
   if (isLoading) {
@@ -303,6 +292,8 @@ export default function BookingRoute() {
           </div>
         </div>
       </header>
+
+      <Banner />
 
       {/* Main Content */}
       <main className="py-8">

@@ -8,7 +8,7 @@ export async function GET(
   try {
     const { performanceId } = await params
 
-    // Fetch all confirmed bookings for this performance with seat details
+    // Fetch all confirmed/paid bookings for this performance with seat details
     const { data: bookedSeats, error } = await supabase
       .from('booking_items')
       .select(`

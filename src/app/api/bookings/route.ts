@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
         )
       `)
       .eq('bookings.performanceId', performanceId)
-      .in('bookings.status', ['CONFIRMED', 'PAID', 'CHECKED_IN'])
+      .in('bookings.status', ['PENDING', 'CONFIRMED', 'PAID', 'CHECKED_IN'])
       .in('seatId', seatIds)
 
     if (bookingCheckError) {
@@ -161,7 +161,7 @@ export async function POST(request: NextRequest) {
     // Generate booking number
     const bookingNumber = `BK${Date.now().toString().slice(-6)}${Math.random().toString(36).substr(2, 3).toUpperCase()}`
 
-    // Create booking
+    // Create booking (start as PENDING until payment completes)
     const bookingId = randomUUID()
     const now = new Date().toISOString()
 
@@ -170,7 +170,7 @@ export async function POST(request: NextRequest) {
       .insert({
         id: bookingId,
         bookingNumber: bookingNumber,
-        status: 'CONFIRMED',
+        status: 'PENDING',
         totalAmount: totalAmount,
         bookingFee: bookingFee,
         accessibilityRequirements: accessibilityRequirements || null,
@@ -192,7 +192,7 @@ export async function POST(request: NextRequest) {
       }, { status: 500 })
     }
 
-    console.log('✅ Created booking:', booking.bookingNumber)
+    console.log('✅ Created booking (pending):', booking.bookingNumber)
 
     // Create booking items for each seat
     const bookingItems = seats.map(seat => ({

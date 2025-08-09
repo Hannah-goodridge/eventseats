@@ -10,10 +10,11 @@ import { cn } from '../../lib/utils'
 import { Show, Performance, SeatingLayout, SeatSelection, BookingFormData, TicketType } from '../../types'
 
 interface BookingResult {
-  bookingNumber: string
-  bookingId: string
+  bookingNumber?: string
+  bookingId?: string
   qrCodeData?: string
   createdAt?: string
+  redirectingToPayment?: boolean
 }
 
 interface BookingPageProps {
@@ -51,6 +52,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
   const [currentStep, setCurrentStep] = useState<BookingStep>(BookingStep.SEAT_SELECTION)
   const [selectedSeats, setSelectedSeats] = useState<SeatSelection[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [redirectingToPayment, setRedirectingToPayment] = useState(false)
   const [bookingConfirmation, setBookingConfirmation] = useState<BookingConfirmation | null>(null)
 
   const prices = {
@@ -108,8 +110,14 @@ export const BookingPage: React.FC<BookingPageProps> = ({
     try {
       const result = await onCompleteBooking(bookingData, selectedSeats)
 
+      // If we are redirecting to Stripe Checkout, do not show confirmation view
+      if (result && result.redirectingToPayment) {
+        setRedirectingToPayment(true)
+        return
+      }
+
       // Create booking confirmation data from the result
-      if (result) {
+      if (result && result.bookingNumber && result.bookingId) {
         setBookingConfirmation({
           bookingNumber: result.bookingNumber,
           bookingId: result.bookingId,
@@ -118,14 +126,15 @@ export const BookingPage: React.FC<BookingPageProps> = ({
           totalAmount: totalAmount,
           createdAt: result.createdAt || new Date().toISOString()
         })
-      setCurrentStep(BookingStep.CONFIRMATION)
+        setCurrentStep(BookingStep.CONFIRMATION)
       }
     } catch (error) {
       console.error('Booking failed:', error)
-      // TODO: Show error message to user
       alert('Booking failed. Please try again.')
     } finally {
-      setIsLoading(false)
+      if (!redirectingToPayment) {
+        setIsLoading(false)
+      }
     }
   }
 
@@ -202,6 +211,16 @@ export const BookingPage: React.FC<BookingPageProps> = ({
 
   return (
     <div className={cn('max-w-6xl mx-auto p-6', className)}>
+      {/* Full-screen overlay while redirecting to Stripe */}
+      {redirectingToPayment && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-2 border-gray-300 border-t-transparent mx-auto mb-3"></div>
+            <p className="text-gray-800 font-medium">Redirecting to secure payment…</p>
+          </div>
+        </div>
+      )}
+
       {/* Show Header with Image */}
       <div className="mb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
@@ -254,7 +273,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
               </span>
             )}
             {show.genre && (
-            <span className="inline-block px-2 py-1 bg-emerald-100 text-emerald-800 text-xs font-medium rounded">
+              <span className="inline-block px-2 py-1 bg-emerald-100 text-emerald-800 text-xs font-medium rounded">
                 {show.genre}
               </span>
             )}
@@ -298,14 +317,14 @@ export const BookingPage: React.FC<BookingPageProps> = ({
             selectedSeats={selectedSeats}
             totalAmount={totalAmount}
             onSubmit={handleSubmitBooking}
-            isLoading={isLoading}
+            isLoading={isLoading || redirectingToPayment}
           />
 
           <div className="flex justify-center">
             <Button
               variant="outline"
               onClick={handleBackToSeatSelection}
-              disabled={isLoading}
+              disabled={isLoading || redirectingToPayment}
             >
               ← Back to Seat Selection
             </Button>
@@ -464,7 +483,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                   </div>
                 </div>
 
-               <div className="bg-emerald-50 rounded-lg p-4">
+                <div className="bg-emerald-50 rounded-lg p-4">
                   <div className="flex justify-between items-center">
                     <span className="text-lg font-semibold text-emerald-900">Total Amount</span>
                     <span className="text-2xl font-bold text-emerald-900">£{bookingConfirmation.totalAmount.toFixed(2)}</span>
@@ -476,7 +495,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
           </div>
 
           {/* Customer Information */}
-          <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+          <div className="bg-white rounded-lg shadow lg p-6 mb-8">
             <h3 className="text-xl font-semibold text-gray-900 mb-4">Customer Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -531,8 +550,8 @@ export const BookingPage: React.FC<BookingPageProps> = ({
           {/* Action Buttons */}
           <div className="text-center space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            variant="primary"
+              <Button
+                variant="primary"
                 size="lg"
                 onClick={() => window.print()}
               >
@@ -541,10 +560,10 @@ export const BookingPage: React.FC<BookingPageProps> = ({
               <Button
                 variant="outline"
                 size="lg"
-            onClick={() => window.location.href = '/'}
-          >
+                onClick={() => window.location.href = '/'}
+              >
                 Book More Shows
-          </Button>
+              </Button>
             </div>
             <p className="text-sm text-gray-600">
               A confirmation email has been sent to {bookingConfirmation.customerInfo.email}
