@@ -53,10 +53,18 @@ Visit [http://localhost:3000](http://localhost:3000) to see your booking system!
 - 🌐 **Embeddable**: Simple iframe embedding for any website
 - 📊 **Admin Dashboard**: Manage shows, performances, and bookings
 - 🎪 **Multi-Venue Support**: Perfect for theatre groups and community centres
+- 🔓 **Open Source**: MIT licensed, self-host for free
+
+---
+
+---
+## ✨ Roadmap
+
 - 📧 **Email Notifications**: Automated booking confirmations
 - 🏷️ **QR Code Tickets**: Digital tickets with QR codes
-- 💳 **Payment Processing**: Stripe integration (work in progress)
-- 🔓 **Open Source**: MIT licensed, self-host for free
+- 💳 **Payment Processing**: Stripe integration (in progress)
+- 🪑 **Custom Seating Charts**: Visual seat map editor
+
 
 ---
 
